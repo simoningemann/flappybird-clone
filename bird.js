@@ -10,7 +10,10 @@ class Bird extends GameObject {
         this.color = "#cc0000";
         this.image = Utility.loadImage("images/bird.png");
         this.yspeed = 0;
-        document.addEventListener("keydown", Bird.jump);
+        let bird = this;
+        document.addEventListener("keydown", function(event) {
+            bird.jump(event.key);
+        });
     }
 
     draw() {
@@ -36,9 +39,9 @@ class Bird extends GameObject {
         this.ypos += this.yspeed;
     }
 
-    static jump (event) {
-        let bird = Bird.#instance;
-        if(event.key == " ") // if space is pressed
-            bird.yspeed = -5;
+    jump (key) {
+        //let bird = Bird.#instance;
+        if(key == " ") // if space is pressed
+            this.yspeed = -5;
     }
 }
