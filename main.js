@@ -13,5 +13,6 @@ let debugModeIsOn = true;
 // setting up game loop
 let gameloop = setInterval(function() {
     Utility.drawBackground("#b3d9ff");
-    GameObject.drawGameObjects();
+    GameObject.drawAll();
+    GameObject.updateAll();
 }, 10);

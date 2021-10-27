@@ -1,14 +1,16 @@
 class Bird extends GameObject {
 
-    static #instance = new Bird(100, 100, 25, "#cc0000");
+    static #instance = new Bird();
 
-    constructor (xpos, ypos, radius, color) {
-        super();
-        this.xpos = xpos;
-        this.ypos = ypos;
-        this.radius = radius;
-        this.color = color;
+    constructor () {
+        super(); // calls the GameObject constructor
+        this.xpos = 100;
+        this.ypos = 100;
+        this.radius = 25;
+        this.color = "#cc0000";
         this.image = Utility.loadImage("images/bird.png");
+        this.yspeed = 0;
+        document.addEventListener("keydown", Bird.jump);
     }
 
     draw() {
@@ -27,5 +29,16 @@ class Bird extends GameObject {
             this.radius * 3,
             this.radius * 3
         );
+    }
+
+    update () {
+        this.yspeed += 0.2;
+        this.ypos += this.yspeed;
+    }
+
+    static jump (event) {
+        let bird = Bird.#instance;
+        if(event.key == " ") // if space is pressed
+            bird.yspeed = -5;
     }
 }
