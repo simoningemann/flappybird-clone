@@ -7,8 +7,8 @@ class Cloud extends GameObject {
 
     constructor () {
         super();
-        this.xpos = window.innerWidth;
-        this.ypos = Math.random() * window.innerHeight;
+        this.xpos = canvas.width;
+        this.ypos = Math.random() * canvas.height;
         this.xspeed = -1;
     }
 
