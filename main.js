@@ -11,6 +11,7 @@ let debugModeIsOn = true;
 alert("Press SPACE to flap your wings");
 Cloud.startSpawner();
 Fireball.startSpawner();
+Coin.startSpawner();
 
 // setting up game loop
 let gameloop = setInterval(function() {

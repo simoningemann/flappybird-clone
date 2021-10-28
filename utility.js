@@ -28,6 +28,13 @@ class Utility {
         ctx.drawImage(img, xpos, ypos, width, height);
     }
 
+    static drawText (text, xpos, ypos, size, color) {
+        let ctx = canvas.getContext("2d");
+        ctx.font = "" + size + "px Comic Sans MS";
+        ctx.fillStyle = color;
+        ctx.fillText(text, xpos, ypos); 
+    }
+
     static loadImage (path) {
         let img = document.createElement("img");
         img.src = path;
