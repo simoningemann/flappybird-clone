@@ -8,8 +8,9 @@ canvas.height = window.innerHeight * 0.9;
 
 //setting up variables
 let debugModeIsOn = true;
-new Cloud();
-new Fireball();
+alert("Press SPACE to flap your wings");
+Cloud.startSpawner();
+Fireball.startSpawner();
 
 // setting up game loop
 let gameloop = setInterval(function() {

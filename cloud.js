@@ -1,9 +1,7 @@
 class Cloud extends GameObject {
 
     static image = Utility.loadImage("images/cloud.png");
-    static spawnloop = setInterval(function() {
-        new Cloud();
-    }, 10000);
+    static spawner;
 
     constructor () {
         let draworder = 0;
@@ -25,6 +23,13 @@ class Cloud extends GameObject {
 
     update() {
         this.xpos += this.xspeed;
+    }
+
+    static startSpawner () {
+        new Cloud();
+        Cloud.spawner = setInterval(function() {
+            new Cloud();
+        }, 10000);
     }
 
 }

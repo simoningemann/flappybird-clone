@@ -13,7 +13,7 @@ class Bird extends GameObject {
         this.yspeed = 0;
         let bird = this;
         document.addEventListener("keydown", function(event) {
-            bird.jump(event.key);
+            bird.flapwings(event.key);
         });
     }
 
@@ -45,7 +45,7 @@ class Bird extends GameObject {
         }
     }
 
-    jump (key) {
+    flapwings (key) {
         if(key == " ") // if space is pressed
             this.yspeed = -5;
     }

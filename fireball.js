@@ -1,9 +1,7 @@
 class Fireball extends GameObject {
 
     static image = Utility.loadImage("images/fireball.png");
-    static spawnloop = setInterval(function() {
-        new Fireball();
-    }, 3000);
+    static spawner;
 
     constructor () {
         let draworder = 1;
@@ -49,6 +47,13 @@ class Fireball extends GameObject {
             alert("Game Over");
             window.location.reload(true);
         }
+    }
+
+    static startSpawner () {
+        new Fireball();
+        Fireball.spawner = setInterval(function() {
+            new Fireball();
+        }, 3000);
     }
 
 }
