@@ -1,6 +1,6 @@
 class Bird extends GameObject {
 
-    static #instance = new Bird();
+    static instance = new Bird();
 
     constructor () {
         let draworder = 10;

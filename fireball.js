@@ -38,6 +38,17 @@ class Fireball extends GameObject {
 
         if(this.xpos < -1000)
         this.destroy();
+
+        let bird = Bird.instance;
+        if  (
+            Utility.theseCirclesCollide(
+            bird.xpos, bird.ypos, bird.radius,
+            this.xpos, this.ypos, this.radius)
+            ) 
+        {
+            alert("Game Over");
+            window.location.reload(true);
+        }
     }
 
 }
