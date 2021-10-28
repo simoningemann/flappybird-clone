@@ -17,6 +17,13 @@ class Bird extends GameObject {
     }
 
     draw() {
+        Utility.drawImage(this.image,
+            this.xpos - this.radius * 1.5,
+            this.ypos - this.radius * 1.5,
+            this.radius * 3,
+            this.radius * 3
+        );
+
         if(debugModeIsOn) {
             Utility.drawCircle(
                 this.xpos, 
@@ -25,18 +32,16 @@ class Bird extends GameObject {
                 this.color
             );
         }
-
-        Utility.drawImage(this.image,
-            this.xpos - this.radius * 1.5,
-            this.ypos - this.radius * 1.5,
-            this.radius * 3,
-            this.radius * 3
-        );
     }
 
     update () {
         this.yspeed += 0.2;
         this.ypos += this.yspeed;
+
+        if(canvas.height < this.ypos || this.ypos < 0) {
+            alert("Game Over");
+            window.location.reload(true);
+        }
     }
 
     jump (key) {
