@@ -3,7 +3,8 @@ class Bird extends GameObject {
     static #instance = new Bird();
 
     constructor () {
-        super(); // calls the GameObject constructor
+        let draworder = 10;
+        super(draworder); // calls the GameObject constructor
         this.xpos = 100;
         this.ypos = 100;
         this.radius = 25;
@@ -45,7 +46,6 @@ class Bird extends GameObject {
     }
 
     jump (key) {
-        //let bird = Bird.#instance;
         if(key == " ") // if space is pressed
             this.yspeed = -5;
     }
