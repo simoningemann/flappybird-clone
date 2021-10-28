@@ -32,30 +32,39 @@ class GameObject {
     }
 
     static sortAllByDrawOrder () {
-        let objects = GameObject.#gameObjects;
+        let result = GameObject.#gameObjects;
 
         // i is the current index
-        for(let i = 0; i < objects.length; i++) {
+        for(let i = 0; i < result.length; i++) {
             // first index of the smallest number
             let s = i;
 
             // j is the temporary index for searching
-            for(let j = i; j < objects.length; j++) {
-                if(objects[s].draworder > objects[j].draworder) {
+            for(let j = i; j < result.length; j++) {
+                if(result[s].draworder > result[j].draworder) {
                     s = j;
                 }
             }
             // temporary index used for swapping
-            let t = objects[i];
-            objects[i] = objects[s]
-            objects[s] = t;
+            let t = result[i];
+            result[i] = result[s]
+            result[s] = t;
         }
-        GameObject.#gameObjects = objects;
+        GameObject.#gameObjects = result;
     }
 
     draw () {
     }
 
     update() {
+    }
+
+    destroy() {
+        let newobjects = [];
+        for(let object of GameObject.#gameObjects) {
+            if (object != this)
+                newobjects.push(object); 
+        }
+        GameObject.#gameObjects = newobjects;
     }
 }

@@ -9,6 +9,7 @@ canvas.height = window.innerHeight * 0.9;
 //setting up variables
 let debugModeIsOn = true;
 new Cloud();
+new Fireball();
 
 // setting up game loop
 let gameloop = setInterval(function() {
