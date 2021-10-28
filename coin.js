@@ -44,7 +44,8 @@ class Coin extends GameObject {
             this.xpos, this.ypos, this.radius)
             ) 
         {
-            
+            Scoreboard.addPoints(1);
+            this.destroy();
         }
     }
 

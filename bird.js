@@ -5,7 +5,7 @@ class Bird extends GameObject {
     constructor () {
         let draworder = 10;
         super(draworder); // calls the GameObject constructor
-        this.xpos = 100;
+        this.xpos = 250;
         this.ypos = 100;
         this.radius = 25;
         this.color = "#cc0000";
