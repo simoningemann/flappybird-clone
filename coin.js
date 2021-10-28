@@ -1,6 +1,7 @@
 class Coin extends GameObject {
 
     static image = Utility.loadImage("images/coin.png");
+    static sound = new Audio("sounds/coin.wav");
     static spawner;
 
     constructor () {
@@ -46,6 +47,7 @@ class Coin extends GameObject {
             this.xpos, this.ypos, this.radius)
             ) 
         {
+            Coin.sound.play();
             Scoreboard.addPoints(1);
             this.destroy();
         }

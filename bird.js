@@ -40,6 +40,7 @@ class Bird extends GameObject {
         this.ypos += this.yspeed;
 
         if(canvas.height < this.ypos || this.ypos < 0) {
+            gameoverSound.play();
             alert("Game Over");
             window.location.reload(true);
         }

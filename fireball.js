@@ -10,7 +10,7 @@ class Fireball extends GameObject {
         this.ypos = Math.random() * canvas.height;
         this.radius = 100;
         this.color = "red";
-        this.xspeed = -3;
+        this.xspeed = -3.5;
         this.tag = "fireball";
         this.respawnIfOverLapWith("coin");
     }
@@ -46,6 +46,7 @@ class Fireball extends GameObject {
             this.xpos, this.ypos, this.radius)
             ) 
         {
+            gameoverSound.play();
             alert("Game Over");
             window.location.reload(true);
         }
@@ -66,7 +67,7 @@ class Fireball extends GameObject {
                     obj.xpos, obj.ypos, obj.radius
                 ))
                 {
-                    new Coin();
+                    new Fireball();
                     this.destroy();
                 }
             }
