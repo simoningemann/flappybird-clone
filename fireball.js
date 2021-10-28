@@ -11,6 +11,8 @@ class Fireball extends GameObject {
         this.radius = 100;
         this.color = "red";
         this.xspeed = -3;
+        this.tag = "fireball";
+        this.respawnIfOverLapWith("coin");
     }
 
     draw() {
@@ -56,4 +58,18 @@ class Fireball extends GameObject {
         }, 3000);
     }
 
+    respawnIfOverLapWith(tag) {
+        for(let obj of GameObject.gameObjects) {
+            if(obj.tag == tag) {
+                if(Utility.theseCirclesCollide(
+                    this.xpos, this.ypos, this.radius,
+                    obj.xpos, obj.ypos, obj.radius
+                ))
+                {
+                    new Coin();
+                    this.destroy();
+                }
+            }
+        }
+    }
 }

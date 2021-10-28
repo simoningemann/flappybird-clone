@@ -1,13 +1,13 @@
 class GameObject {
 
-    static #gameObjects = [];
+    static gameObjects = [];
 
     constructor (draworder) {
         // higher draworder is drawn on top
         this.draworder = 
         draworder == undefined ? 0 : draworder;
 
-        GameObject.#gameObjects.push(this);
+        GameObject.gameObjects.push(this);
         GameObject.sortAllByDrawOrder();
 
         /* alternatively use javascripts array.sort method
@@ -18,21 +18,21 @@ class GameObject {
     }
 
     static drawAll() {
-        let objects = GameObject.#gameObjects;
+        let objects = GameObject.gameObjects;
         for (let i = 0; i < objects.length; i++) {
             objects[i].draw();
         }
     }
 
     static updateAll() {
-        let objects = GameObject.#gameObjects;
+        let objects = GameObject.gameObjects;
         for (let i = 0; i < objects.length; i++) {
             objects[i].update();
         }
     }
 
     static sortAllByDrawOrder () {
-        let result = GameObject.#gameObjects;
+        let result = GameObject.gameObjects;
 
         // i is the current index
         for(let i = 0; i < result.length; i++) {
@@ -50,7 +50,7 @@ class GameObject {
             result[i] = result[s]
             result[s] = t;
         }
-        GameObject.#gameObjects = result;
+        GameObject.gameObjects = result;
     }
 
     draw () {
@@ -61,10 +61,10 @@ class GameObject {
 
     destroy() {
         let newobjects = [];
-        for(let object of GameObject.#gameObjects) {
+        for(let object of GameObject.gameObjects) {
             if (object != this)
                 newobjects.push(object); 
         }
-        GameObject.#gameObjects = newobjects;
+        GameObject.gameObjects = newobjects;
     }
 }

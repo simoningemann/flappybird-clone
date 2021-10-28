@@ -7,7 +7,7 @@ canvas.height = window.innerHeight * 0.9;
 
 
 //setting up variables
-let debugModeIsOn = true;
+let debugModeIsOn = false;
 alert("Press SPACE to flap your wings");
 Cloud.startSpawner();
 Fireball.startSpawner();

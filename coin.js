@@ -11,6 +11,8 @@ class Coin extends GameObject {
         this.radius = 25;
         this.color = "red";
         this.xspeed = -3;
+        this.tag = "coin";
+        this.respawnIfOverLapWith("fireball");
     }
 
     draw() {
@@ -54,6 +56,21 @@ class Coin extends GameObject {
         Coin.spawner = setInterval(function() {
             new Coin();
         }, 1000);
+    }
+
+    respawnIfOverLapWith(tag) {
+        for(let obj of GameObject.gameObjects) {
+            if(obj.tag == tag) {
+                if(Utility.theseCirclesCollide(
+                    this.xpos, this.ypos, this.radius,
+                    obj.xpos, obj.ypos, obj.radius
+                ))
+                {
+                    new Coin();
+                    this.destroy();
+                }
+            }
+        }
     }
 
 }
