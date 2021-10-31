@@ -6,13 +6,12 @@ class Fireball extends GameObject {
     constructor () {
         let draworder = 1;
         super(draworder);
-        this.xpos = canvas.width;
+        this.xpos = canvas.width * 1.2;
         this.ypos = Math.random() * canvas.height;
         this.radius = 100;
         this.color = "red";
         this.xspeed = -3.5;
         this.tag = "fireball";
-        this.respawnIfOverLapWith("coin");
     }
 
     draw() {
@@ -57,20 +56,5 @@ class Fireball extends GameObject {
         Fireball.spawner = setInterval(function() {
             new Fireball();
         }, 3000);
-    }
-
-    respawnIfOverLapWith(tag) {
-        for(let obj of GameObject.gameObjects) {
-            if(obj.tag == tag) {
-                if(Utility.theseCirclesCollide(
-                    this.xpos, this.ypos, this.radius,
-                    obj.xpos, obj.ypos, obj.radius
-                ))
-                {
-                    new Fireball();
-                    this.destroy();
-                }
-            }
-        }
     }
 }
