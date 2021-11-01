@@ -51,7 +51,7 @@ class Fireball extends GameObject {
 
     static startSpawner () {
         let params = {
-            draworder: 1,
+            draworder: 2,
             xpos: canvas.width * 1.2,
             ypos: Math.random() * canvas.height,
             radius: 100,

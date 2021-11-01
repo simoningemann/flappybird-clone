@@ -3,11 +3,11 @@ class Cloud extends GameObject {
     static image = Utility.loadImage("images/cloud.png");
     static spawner;
 
-    constructor () {
-    super({draworder: 0});
-        this.xpos = canvas.width;
-        this.ypos = Math.random() * canvas.height/2;
-        this.xspeed = -.5;
+    constructor (params) {
+    super({draworder: params.draworder});
+        this.xpos = params.xpos; //canvas.width;
+        this.ypos = params.ypos; //Math.random() * canvas.height/2;
+        this.xspeed = params.xspeed;//-.5;
     }
 
     draw() {
@@ -25,9 +25,17 @@ class Cloud extends GameObject {
     }
 
     static startSpawner () {
-        new Cloud();
+        let params = {
+            draworder: 0,
+            xpos: canvas.width,
+            ypos: Math.random() * canvas.height/2,
+            xspeed: -.5
+        }
+
+        new Cloud(params);
         Cloud.spawner = setInterval(function() {
-            new Cloud();
+            params.ypos = Math.random() * canvas.height/2;
+            new Cloud(params);
         }, 10000);
     }
 

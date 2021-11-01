@@ -52,6 +52,7 @@ class Coin extends GameObject {
 
     static startSpawner () {
         let params = {
+            draworder: 1,
             xpos: canvas.width * 1.2,
             ypos: Math.random() * canvas.height,
             radius: 25,
