@@ -3,14 +3,14 @@ class Fireball extends GameObject {
     static image = Utility.loadImage("images/fireball.png");
     static spawner;
 
-    constructor () {
-        super({draworder: 1});
-        this.xpos = canvas.width * 1.2;
-        this.ypos = Math.random() * canvas.height;
-        this.radius = 100;
-        this.color = "red";
-        this.xspeed = -3.5;
-        this.tag = "fireball";
+    constructor (params) {
+        super({draworder: params.draworder}); // 1
+        this.xpos =  params.xpos; //canvas.width * 1.2;
+        this.ypos =  params.ypos; //Math.random() * canvas.height;
+        this.radius = params.radius; //100;
+        this.color = params.radius; //"red";
+        this.xspeed = params.xspeed; //-3.5;
+        //this.tag = "fireball";
     }
 
     draw() {
@@ -51,9 +51,24 @@ class Fireball extends GameObject {
     }
 
     static startSpawner () {
-        new Fireball();
+        new Fireball({
+            draworder: 1,
+            xpos: canvas.width * 1.2,
+            ypos: Math.random() * canvas.height,
+            radius: 100,
+            color: "red",
+            xspeed: -3.5
+        });
+        //this.tag = "fireball";
         Fireball.spawner = setInterval(function() {
-            new Fireball();
+            new Fireball({
+                draworder: 1,
+                xpos: canvas.width * 1.2,
+                ypos: Math.random() * canvas.height,
+                radius: 100,
+                color: "red",
+                xspeed: -3.5
+            });
         }, 3000);
     }
 }
