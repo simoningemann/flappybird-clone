@@ -4,14 +4,13 @@ class Coin extends GameObject {
     static sound = new Audio("sounds/coin.wav");
     static spawner;
 
-    constructor () {
-        super({draworder: 2});
-        this.xpos = canvas.width * 1.2;
-        this.ypos = Math.random() * canvas.height;
-        this.radius = 25;
-        this.color = "red";
-        this.xspeed = -3;
-        this.tag = "coin";
+    constructor (params) {
+        super({draworder: params.draworder});
+        this.xpos = params.xpos;
+        this.ypos = params.ypos; 
+        this.radius = params.radius;
+        this.color = params.color;
+        this.xspeed = params.xspeed;
     }
 
     draw() {
@@ -52,9 +51,18 @@ class Coin extends GameObject {
     }
 
     static startSpawner () {
-        new Coin();
+        let params = {
+            xpos: canvas.width * 1.2,
+            ypos: Math.random() * canvas.height,
+            radius: 25,
+            color: "red",
+            xspeed: -3
+        };
+
+        new Coin(params);
         Coin.spawner = setInterval(function() {
-            new Coin();
+            params.ypos =  Math.random() * canvas.height;
+            new Coin(params);
         }, 1000);
     }
 
