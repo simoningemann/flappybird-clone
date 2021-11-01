@@ -62,4 +62,8 @@ class GameObject {
         }
         GameObject.gameObjects = newobjects;
     }
+
+    static destroyAll () {
+        GameObject.gameObjects = [];
+    }
 }

@@ -17,11 +17,14 @@ class Game {
             //document.removeEventListener("keydown", this);
         }, {once: true});
 
-        this.gameloop = setInterval(function() {
+        this.gameloop = new Interval({
+            procedure: function() {
             Canvas.drawBackground("#b3d9ff");
             GameObject.drawAll();
             GameObject.updateAll();
-        }, 10);
+            },
+            frequency: 10
+        });
 
     }
 

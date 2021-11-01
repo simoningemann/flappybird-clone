@@ -1,0 +1,5 @@
+const Scene = {
+    Start: function() {
+
+    },
+}
