@@ -32,7 +32,7 @@ class Bird extends GameObject {
             this.radius * 3
         );
 
-        if(debugModeIsOn) {
+        if(Game.debugModeIsOn) {
             Canvas.drawCircle(
                 this.xpos, 
                 this.ypos, 
@@ -47,7 +47,7 @@ class Bird extends GameObject {
         this.ypos += this.yspeed;
 
         if(Canvas.getHeight() < this.ypos || this.ypos < 0) {
-            gameoverSound.play();
+            Game.gameOverSound.play();
             alert("Game Over");
             window.location.reload(true);
         }

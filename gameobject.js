@@ -3,18 +3,13 @@ class GameObject {
     static gameObjects = [];
 
     constructor (params) {
-        // higher draworder is drawn on top
+        // higher draworder is drawn in front
         this.draworder = 
         params.draworder == undefined ? 0 : params.draworder;
 
         GameObject.gameObjects.push(this);
         GameObject.sortAllByDrawOrder();
 
-        /* alternatively use javascripts array.sort method
-        GameObject.#gameObjects.sort(
-            (a, b) => a.draworder - b.draworder
-        );
-        */
     }
 
     static drawAll() {

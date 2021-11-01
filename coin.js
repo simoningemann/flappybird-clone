@@ -21,7 +21,7 @@ class Coin extends GameObject {
             Coin.image.height*.1
         );
 
-        if(debugModeIsOn) {
+        if(Game.debugModeIsOn) {
             Canvas.drawCircle(
                 this.xpos, 
                 this.ypos, 

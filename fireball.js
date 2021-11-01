@@ -20,7 +20,7 @@ class Fireball extends GameObject {
             Fireball.image.height*1.3
         );
 
-        if(debugModeIsOn) {
+        if(Game.debugModeIsOn) {
             Canvas.drawCircle(
                 this.xpos, 
                 this.ypos, 
@@ -43,7 +43,7 @@ class Fireball extends GameObject {
             this.xpos, this.ypos, this.radius)
             ) 
         {
-            gameoverSound.play();
+            Game.gameOverSound.play();
             alert("Game Over");
             window.location.reload(true);
         }
