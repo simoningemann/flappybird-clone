@@ -2,10 +2,10 @@ class GameObject {
 
     static gameObjects = [];
 
-    constructor (draworder) {
+    constructor (params) {
         // higher draworder is drawn on top
         this.draworder = 
-        draworder == undefined ? 0 : draworder;
+        params.draworder == undefined ? 0 : params.draworder;
 
         GameObject.gameObjects.push(this);
         GameObject.sortAllByDrawOrder();

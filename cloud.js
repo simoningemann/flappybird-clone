@@ -4,8 +4,7 @@ class Cloud extends GameObject {
     static spawner;
 
     constructor () {
-        let draworder = 0;
-        super(draworder);
+    super({draworder: 0});
         this.xpos = canvas.width;
         this.ypos = Math.random() * canvas.height/2;
         this.xspeed = -.5;

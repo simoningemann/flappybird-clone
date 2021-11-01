@@ -4,8 +4,7 @@ class Fireball extends GameObject {
     static spawner;
 
     constructor () {
-        let draworder = 1;
-        super(draworder);
+        super({draworder: 1});
         this.xpos = canvas.width * 1.2;
         this.ypos = Math.random() * canvas.height;
         this.radius = 100;

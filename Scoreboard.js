@@ -3,8 +3,7 @@ class Scoreboard extends GameObject {
     static instance = new Scoreboard();
 
     constructor () {
-        let draworder = 9;
-        super(draworder); // calls the GameObject constructor
+        super({draworder: 9}); // calls the GameObject constructor
         this.xpos = 25;
         this.ypos = 25;
         this.color = "#cc0000";

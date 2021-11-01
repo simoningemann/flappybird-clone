@@ -5,8 +5,7 @@ class Coin extends GameObject {
     static spawner;
 
     constructor () {
-        let draworder = 2;
-        super(draworder);
+        super({draworder: 2});
         this.xpos = canvas.width * 1.2;
         this.ypos = Math.random() * canvas.height;
         this.radius = 25;
