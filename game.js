@@ -13,13 +13,11 @@ class Game {
         let game = this;
         document.addEventListener("keydown", function() {
             game.music.play();
-            console.log("play");
-            //document.removeEventListener("keydown", this);
         }, {once: true});
 
         this.gameloop = new Interval({
             procedure: function() {
-            Canvas.drawBackground("#b3d9ff");
+            Canvas.drawBackground();
             GameObject.drawAll();
             GameObject.updateAll();
             },

@@ -7,6 +7,7 @@ class Canvas {
             document.createElement("canvas"));
         this.canvas.width = window.innerWidth * 0.9;
         this.canvas.height = window.innerHeight * 0.9;
+        this.color = "#b3d9ff":
     }
 
     static getHeight() {
@@ -17,9 +18,14 @@ class Canvas {
         return Canvas.#instance.canvas.width;
     }
 
-    static drawBackground (color) {
+    static drawBackground () {
         let canvas = Canvas.#instance.canvas;
-        Canvas.drawRect(0, 0, canvas.width, canvas.height, color);
+        Canvas.drawRect(
+            0, 0,
+            canvas.width, 
+            canvas.height,
+            canvas.color
+        );
     }
 
     static drawRect (xpos, ypos, width, height, color) {

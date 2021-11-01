@@ -1,5 +1,7 @@
-const Scene = {
-    Start: function() {
+class Scene {
 
-    },
+    constructor(se) {
+        scene.se
+    }
+
 }
