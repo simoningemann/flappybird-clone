@@ -5,15 +5,15 @@ class Fireball extends GameObject {
 
     constructor (params) {
         super({draworder: params.draworder});
-        this.xpos =  params.xpos;
-        this.ypos =  params.ypos;
+        this.xpos = params.xpos;
+        this.ypos = params.ypos;
         this.radius = params.radius;
         this.color = params.radius;
         this.xspeed = params.xspeed;
     }
 
     draw() {
-        Utility.drawImage(Fireball.image,
+        Canvas.drawImage(Fireball.image,
             this.xpos - this.radius * 2.3,
             this.ypos - this.radius * 1.6,
             Fireball.image.width*1.3,
@@ -21,7 +21,7 @@ class Fireball extends GameObject {
         );
 
         if(debugModeIsOn) {
-            Utility.drawCircle(
+            Canvas.drawCircle(
                 this.xpos, 
                 this.ypos, 
                 this.radius, 
@@ -52,8 +52,8 @@ class Fireball extends GameObject {
     static startSpawner () {
         let params = {
             draworder: 2,
-            xpos: canvas.width * 1.2,
-            ypos: Math.random() * canvas.height,
+            xpos: Canvas.getWidth() * 1.2,
+            ypos: Math.random() * Canvas.getHeight(),
             radius: 100,
             color: "red",
             xspeed: -3.5
@@ -62,7 +62,7 @@ class Fireball extends GameObject {
         new Fireball(params);
         //this.tag = "fireball";
         Fireball.spawner = setInterval(function() {
-            params.ypos = Math.random() * canvas.height;
+            params.ypos = Math.random() * Canvas.getHeight();
             new Fireball(params);
         }, 3000);
     }

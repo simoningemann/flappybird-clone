@@ -25,7 +25,7 @@ class Bird extends GameObject {
     }
 
     draw() {
-        Utility.drawImage(this.image,
+        Canvas.drawImage(this.image,
             this.xpos - this.radius * 1.5,
             this.ypos - this.radius * 1.5,
             this.radius * 3,
@@ -33,7 +33,7 @@ class Bird extends GameObject {
         );
 
         if(debugModeIsOn) {
-            Utility.drawCircle(
+            Canvas.drawCircle(
                 this.xpos, 
                 this.ypos, 
                 this.radius, 
@@ -46,7 +46,7 @@ class Bird extends GameObject {
         this.yspeed += 0.2;
         this.ypos += this.yspeed;
 
-        if(canvas.height < this.ypos || this.ypos < 0) {
+        if(Canvas.getHeight() < this.ypos || this.ypos < 0) {
             gameoverSound.play();
             alert("Game Over");
             window.location.reload(true);

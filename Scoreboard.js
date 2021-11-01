@@ -3,7 +3,7 @@ class Scoreboard extends GameObject {
     static instance = new Scoreboard();
 
     constructor () {
-        super({draworder: 9}); // calls the GameObject constructor
+        super({draworder: 9});
         this.xpos = 25;
         this.ypos = 25;
         this.color = "#cc0000";
@@ -12,13 +12,13 @@ class Scoreboard extends GameObject {
     }
 
     draw() {
-        Utility.drawImage(this.image,
+        Canvas.drawImage(this.image,
             this.xpos,
             this.ypos,
             40,
             40
         );
-        Utility.drawText("x"+ this.score,
+        Canvas.drawText("x"+ this.score,
             this.xpos + 40,
             this.ypos + 30,
             30,

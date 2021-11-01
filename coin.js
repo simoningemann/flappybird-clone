@@ -14,7 +14,7 @@ class Coin extends GameObject {
     }
 
     draw() {
-        Utility.drawImage(Coin.image,
+        Canvas.drawImage(Coin.image,
             this.xpos - this.radius * 1.3,
             this.ypos - this.radius * 1.3,
             Coin.image.width*.1,
@@ -22,7 +22,7 @@ class Coin extends GameObject {
         );
 
         if(debugModeIsOn) {
-            Utility.drawCircle(
+            Canvas.drawCircle(
                 this.xpos, 
                 this.ypos, 
                 this.radius, 
@@ -53,8 +53,8 @@ class Coin extends GameObject {
     static startSpawner () {
         let params = {
             draworder: 1,
-            xpos: canvas.width * 1.2,
-            ypos: Math.random() * canvas.height,
+            xpos: Canvas.getWidth() * 1.2,
+            ypos: Math.random() * Canvas.getHeight(),
             radius: 25,
             color: "red",
             xspeed: -3
@@ -62,7 +62,7 @@ class Coin extends GameObject {
 
         new Coin(params);
         Coin.spawner = setInterval(function() {
-            params.ypos =  Math.random() * canvas.height;
+            params.ypos =  Math.random() * Canvas.getHeight();
             new Coin(params);
         }, 1000);
     }
