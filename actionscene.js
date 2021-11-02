@@ -21,6 +21,15 @@ class ActionScene {
             yspeed: 0
         });
 
+        this.scoreboard = new Scoreboard({
+            draworder: 9,
+            xpos: 25,
+            ypos: 25,
+            color: "#cc0000",
+            score: 0,
+            image: Utility.loadImage("images/coin.png")
+        });
+
         let cloudParams = {
             draworder: 0,
             xpos: Canvas.getWidth(),
@@ -65,10 +74,10 @@ class ActionScene {
         new Coin(coinParams);
         this.coinspawner = new Interval({
             procedure: function() {
-            coinParams.ypos =  Math.random() * Canvas.getHeight();
-            new Coin(coinParams);
-        }, 
-        frequency: 1000
+                coinParams.ypos =  Math.random() * Canvas.getHeight();
+                new Coin(coinParams);
+            }, 
+            frequency: 1000
         });
     }
 }

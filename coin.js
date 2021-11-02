@@ -45,7 +45,7 @@ class Coin extends GameObject {
             ) 
         {
             Coin.sound.play();
-            Scoreboard.addPoints(1);
+            Game.getScene().scoreboard.addPoints(1);
             this.destroy();
         }
     }

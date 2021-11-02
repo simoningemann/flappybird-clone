@@ -1,14 +1,12 @@
 class Scoreboard extends GameObject {
 
-    static instance = new Scoreboard();
-
-    constructor () {
-        super({draworder: 9});
-        this.xpos = 25;
-        this.ypos = 25;
-        this.color = "#cc0000";
-        this.score = 0;
-        this.image = Utility.loadImage("images/coin.png");
+    constructor (params) {
+        super({draworder: params.draworder});
+        this.xpos = params.xpos;
+        this.ypos = params.ypos;
+        this.color = params.color;
+        this.score = params.score;
+        this.image = params.image;
     }
 
     draw() {
@@ -30,7 +28,7 @@ class Scoreboard extends GameObject {
        
     }
 
-    static addPoints (points) {
-        Scoreboard.instance.score += points;
+    addPoints (points) {
+        this.score += points;
     }
 }
