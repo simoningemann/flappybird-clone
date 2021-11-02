@@ -8,6 +8,7 @@ class Bird extends GameObject {
         this.color = params.color;
         this.image = params.image;
         this.yspeed = params.yspeed;
+        this.yaccelleration = params.yaccelleration;
         let bird = this;
         document.addEventListener("keydown", function(event) {
             bird.flapwings(event.key);
@@ -33,13 +34,14 @@ class Bird extends GameObject {
     }
 
     update () {
-        this.yspeed += 0.2;
+        this.yspeed += this.yaccelleration;
         this.ypos += this.yspeed;
 
         if(Canvas.getHeight() < this.ypos || this.ypos < 0) {
             Game.gameOverSound.play();
             alert("Game Over");
             window.location.reload(true);
+
         }
     }
 

@@ -16,12 +16,13 @@ class Scoreboard extends GameObject {
             40,
             40
         );
-        Canvas.drawText("x"+ this.score,
-            this.xpos + 40,
-            this.ypos + 30,
-            30,
-            "yellow"
-        );
+        Canvas.drawText({
+            text: "x"+ this.score,
+            xpos: this.xpos + 40,
+            ypos: this.ypos + 30,
+            size: 30,
+            color: "yellow"
+        });
     }
 
     update () {

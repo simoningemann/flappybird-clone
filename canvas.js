@@ -52,11 +52,11 @@ class Canvas {
         ctx.drawImage(img, xpos, ypos, width, height);
     }
 
-    static drawText (text, xpos, ypos, size, color) {
+    static drawText (params) {
         let ctx = Canvas.#instance.canvas.getContext("2d");
-        ctx.font = "" + size + "px Comic Sans MS";
-        ctx.fillStyle = color;
-        ctx.fillText(text, xpos, ypos); 
+        ctx.font = "" + params.size + "px Comic Sans MS";
+        ctx.fillStyle = params.color;
+        ctx.fillText(params.text, params.xpos, params.ypos); 
     }
     
 }

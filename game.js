@@ -13,7 +13,7 @@ class Game {
             GameObject.drawAll();
             GameObject.updateAll();
             },
-            frequency: 10
+            frequency: 1000/120
         });
 
         this.currentScene = new ActionScene();
@@ -22,5 +22,12 @@ class Game {
     static getScene() {
         return Game.#instance.currentScene;
     }
+
+    static changeScene(newScene) {
+        GameObject.destroyAll();
+        Interval.clearAll();
+        Game.#instance.currentScene = newScene;
+    }
+
 
 }
