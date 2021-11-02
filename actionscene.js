@@ -21,23 +21,23 @@ class ActionScene {
             yspeed: 0
         });
 
-        let params = {
+        let cloudParams = {
             draworder: 0,
             xpos: Canvas.getWidth(),
             ypos: Math.random() * Canvas.getHeight()/2,
             xspeed: -.5
         };
-        new Cloud(params);
+        new Cloud(cloudParams);
 
         this.cloudSpawner = new Interval({
             procedure: function() {
-                params.ypos = Math.random() * Canvas.getHeight()/2;
-                new Cloud(params);
+                cloudParams.ypos = Math.random() * Canvas.getHeight()/2;
+                new Cloud(cloudParams);
             },
             frequency: 10000
         });
 
-        params = {
+        let fireballParams = {
             draworder: 2,
             xpos: Canvas.getWidth() * 1.2,
             ypos: Math.random() * Canvas.getHeight(),
@@ -45,16 +45,16 @@ class ActionScene {
             color: "red",
             xspeed: -3.5
         }
-        new Fireball(params);
+        new Fireball(fireballParams);
         let fireballspawner = new Interval({
             procedure: function() {
-                params.ypos = Math.random() * Canvas.getHeight();
-                new Fireball(params);
+                fireballParams.ypos = Math.random() * Canvas.getHeight();
+                new Fireball(fireballParams);
             }, 
             frequency: 3000
         });
 
-        params = {
+        let coinParams = {
             draworder: 1,
             xpos: Canvas.getWidth() * 1.2,
             ypos: Math.random() * Canvas.getHeight(),
@@ -62,11 +62,11 @@ class ActionScene {
             color: "red",
             xspeed: -3
         };
-        new Coin(params);
+        new Coin(coinParams);
         this.coinspawner = new Interval({
             procedure: function() {
-            params.ypos =  Math.random() * Canvas.getHeight();
-            new Coin(params);
+            coinParams.ypos =  Math.random() * Canvas.getHeight();
+            new Coin(coinParams);
         }, 
         frequency: 1000
         });
