@@ -37,7 +37,7 @@ class Coin extends GameObject {
         if(this.xpos < -1000)
         this.destroy();
 
-        let bird = Bird.instance;
+        let bird = Game.getScene().bird;
         if  (
             Utility.theseCirclesCollide(
             bird.xpos, bird.ypos, bird.radius,
@@ -48,23 +48,6 @@ class Coin extends GameObject {
             Scoreboard.addPoints(1);
             this.destroy();
         }
-    }
-
-    static startSpawner () {
-        let params = {
-            draworder: 1,
-            xpos: Canvas.getWidth() * 1.2,
-            ypos: Math.random() * Canvas.getHeight(),
-            radius: 25,
-            color: "red",
-            xspeed: -3
-        };
-
-        new Coin(params);
-        Coin.spawner = setInterval(function() {
-            params.ypos =  Math.random() * Canvas.getHeight();
-            new Coin(params);
-        }, 1000);
     }
 
 }

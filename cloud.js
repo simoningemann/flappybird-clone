@@ -24,19 +24,4 @@ class Cloud extends GameObject {
         this.xpos += this.xspeed;
     }
 
-    static startSpawner () {
-        let params = {
-            draworder: 0,
-            xpos: Canvas.getWidth(),
-            ypos: Math.random() * Canvas.getHeight()/2,
-            xspeed: -.5
-        }
-
-        new Cloud(params);
-        Cloud.spawner = setInterval(function() {
-            params.ypos = Math.random() * Canvas.getHeight()/2;
-            new Cloud(params);
-        }, 10000);
-    }
-
 }

@@ -36,7 +36,7 @@ class Fireball extends GameObject {
         if(this.xpos < -1000)
         this.destroy();
 
-        let bird = Bird.instance;
+        let bird = Game.getScene().bird;
         if  (
             Utility.theseCirclesCollide(
             bird.xpos, bird.ypos, bird.radius,
@@ -47,23 +47,5 @@ class Fireball extends GameObject {
             alert("Game Over");
             window.location.reload(true);
         }
-    }
-
-    static startSpawner () {
-        let params = {
-            draworder: 2,
-            xpos: Canvas.getWidth() * 1.2,
-            ypos: Math.random() * Canvas.getHeight(),
-            radius: 100,
-            color: "red",
-            xspeed: -3.5
-        }
-
-        new Fireball(params);
-        //this.tag = "fireball";
-        Fireball.spawner = setInterval(function() {
-            params.ypos = Math.random() * Canvas.getHeight();
-            new Fireball(params);
-        }, 3000);
     }
 }

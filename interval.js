@@ -7,6 +7,7 @@ class Interval {
         this.frequency = params.frequency;
         this.isPaused = false;
         let interval = this;
+        //this.procedure();
         this.id = setInterval(
             function() {
                 if(!interval.isPaused)
