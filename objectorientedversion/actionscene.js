@@ -2,7 +2,7 @@ class ActionScene {
 
     constructor() {
         
-        this.music = new Audio("sounds/music.mp3");
+        this.music = new Audio("../assets/sounds/music.mp3");
         this.music.loop = true;
         
         this.text = new Text({
@@ -20,7 +20,7 @@ class ActionScene {
             ypos: 250,
             radius: 25,
             color: "#cc0000",
-            image: Utility.loadImage("images/bird.png"),
+            image: Utility.loadImage("../assets/images/bird.png"),
             yspeed: 0,
             yaccelleration: 0,
         });
@@ -38,7 +38,7 @@ class ActionScene {
             ypos: 25,
             color: "#cc0000",
             score: 0,
-            image: Utility.loadImage("images/coin.png")
+            image: Utility.loadImage("../assets/images/coin.png")
         });
 
         let cloudParams = {

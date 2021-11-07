@@ -1,6 +1,6 @@
 class Cloud extends GameObject {
 
-    static image = Utility.loadImage("images/cloud.png");
+    static image = Utility.loadImage("../assets/images/cloud.png");
 
     constructor (params) {
     super({draworder: params.draworder});

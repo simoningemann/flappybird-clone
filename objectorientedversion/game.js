@@ -3,7 +3,7 @@ class Game {
 
     static #instance = new Game();
     static debugModeIsOn = false;
-    static gameOverSound = new Audio("sounds/gameover.mp3");
+    static gameOverSound = new Audio("../assets/sounds/gameover.mp3");
 
     constructor() {
 

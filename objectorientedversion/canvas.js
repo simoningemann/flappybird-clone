@@ -7,7 +7,7 @@ class Canvas {
             document.createElement("canvas"));
         this.canvas.width = window.innerWidth * 0.9;
         this.canvas.height = window.innerHeight * 0.9;
-        this.canvas.color = "#b3d9ff"
+        this.canvas.color = "#b3d9ff";
     }
 
     static getHeight() {

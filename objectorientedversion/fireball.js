@@ -1,24 +1,23 @@
-class Coin extends GameObject {
+class Fireball extends GameObject {
 
-    static image = Utility.loadImage("images/coin.png");
-    static sound = new Audio("sounds/coin.wav");
+    static image = Utility.loadImage("../assets/images/fireball.png");
     static spawner;
 
     constructor (params) {
         super({draworder: params.draworder});
         this.xpos = params.xpos;
-        this.ypos = params.ypos; 
+        this.ypos = params.ypos;
         this.radius = params.radius;
-        this.color = params.color;
+        this.color = params.radius;
         this.xspeed = params.xspeed;
     }
 
     draw() {
-        Canvas.drawImage(Coin.image,
-            this.xpos - this.radius * 1.3,
-            this.ypos - this.radius * 1.3,
-            Coin.image.width*.1,
-            Coin.image.height*.1
+        Canvas.drawImage(Fireball.image,
+            this.xpos - this.radius * 2.3,
+            this.ypos - this.radius * 1.6,
+            Fireball.image.width*1.3,
+            Fireball.image.height*1.3
         );
 
         if(Game.debugModeIsOn) {
@@ -44,10 +43,9 @@ class Coin extends GameObject {
             this.xpos, this.ypos, this.radius)
             ) 
         {
-            Coin.sound.play();
-            Game.getScene().scoreboard.addPoints(1);
-            this.destroy();
+            Game.gameOverSound.play();
+            alert("Game Over");
+            window.location.reload(true);
         }
     }
-
 }
