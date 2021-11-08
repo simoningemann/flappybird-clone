@@ -14,9 +14,9 @@ function update() {
             cloudImage.width/4,
             cloudImage.height/4
         );
-        // update the x position
+        // update the x position of the cloud
         clouds[i][0] += cloudXSpeed;
-        // remove if it moves beyond the destruction point
+        // remove cloud if it moves beyond the destruction point
         if(clouds[i][0] < destructionXPosition) {
             clouds = removeIndexAndReturn(clouds, i);
             i--; // decrement i to avoid flicker

@@ -40,7 +40,7 @@ function drawRect (xpos, ypos, width, height, color) {
 }
 
 function randomBetween(min, max) {
-    return Math.random()*max - min;
+    return Math.random()*(max - min)+min;
 }
 
 function drawCircle (xpos, ypos, radius, color) {
