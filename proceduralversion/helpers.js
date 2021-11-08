@@ -45,7 +45,7 @@ function randomBetween(min, max) {
 
 function drawCircle (xpos, ypos, radius, color) {
     let context = canvas.getContext("2d");
-    context.fillStyle = color; 
+    context.strokeStyle = color; 
     context.beginPath();
     context.arc(
         xpos,
@@ -53,7 +53,7 @@ function drawCircle (xpos, ypos, radius, color) {
         radius,
         0, 2 * Math.PI
     );
-    context.fill();
+    context.stroke();
 }
 
 function drawImage (image, xPos, yPos, width, height) {

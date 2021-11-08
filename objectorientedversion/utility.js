@@ -25,4 +25,7 @@ class Utility {
         return Math.sqrt(cSqaured);
     }
 
+    static randomBetween(min, max) {
+        return Math.random()*(max - min)+min;
+    }
 }

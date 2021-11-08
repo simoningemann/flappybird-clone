@@ -142,7 +142,7 @@ function update() {
             fireballImage.height*1.3
         );
 
-        if(debugModeIsOn) {
+        if(debugModeIsOn) { // draw the hotbox
             drawCircle(
                 fireballs[i][0], 
                 fireballs[i][1], 
