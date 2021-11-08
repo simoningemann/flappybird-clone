@@ -2,9 +2,9 @@ class Bird extends GameObject {
 
     // standard parameters for making a bird
     static data = {
-        drawOrder: 8,
+        drawOrder: 5,
         xPosition: 250,
-        yPositition: 250,
+        yPosition: 250,
         ySpeed: 0,
         yAccelleration: 0,
         hitboxRadius: 25,
@@ -54,16 +54,16 @@ class Bird extends GameObject {
         this.ySpeed += this.yAccelleration;
         this.yPosition += this.ySpeed;
 
-        if(Canvas.getHeight() < this.yPosition || this.yPosition < 0) {
+        if((Canvas.getHeight() < this.yPosition ||
+        this.yPosition < 0) && gameState == "action") {
+            this.canFlap = false;
             gameOverSound.play();
-            alert("Game Over");
-            window.location.reload(true);
-
+            gameState = "gameover";
         }
         
     }
 
     flapwings () {
-            this.ySpeed = -5;
+            this.ySpeed = this.flapForce;
     }
 }

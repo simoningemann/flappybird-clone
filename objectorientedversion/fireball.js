@@ -1,51 +1,66 @@
 class Fireball extends GameObject {
 
-    static image = Utility.loadImage("../assets/images/fireball.png");
-    static spawner;
+    static data = {
+        drawOrder: 10,
+        image: Utility.loadImage("../assets/images/fireball.png"),
+        xPosition: Canvas.getWidth() + 200,
+        xSpeed: -3.5,
+        hitboxRadius: 100
+    }
 
-    constructor (params) {
-        super({draworder: params.draworder});
-        this.xpos = params.xpos;
-        this.ypos = params.ypos;
-        this.radius = params.radius;
-        this.color = params.radius;
-        this.xspeed = params.xspeed;
+    static spawnInterval = 2000;
+    static timeSinceLastSpawn = 2000;
+
+    constructor (drawOrder, image, xPosition, yPosition,
+        hitboxRadius, xSpeed) {
+        super(drawOrder, "fireball");
+        this.image = image;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+        this.hitboxRadius = hitboxRadius;
+        this.xSpeed = xSpeed;
     }
 
     draw() {
-        Canvas.drawImage(Fireball.image,
-            this.xpos - this.radius * 2.3,
-            this.ypos - this.radius * 1.6,
-            Fireball.image.width*1.3,
-            Fireball.image.height*1.3
+        Canvas.drawImage(
+            this.image,
+            this.xPosition - this.hitboxRadius * 2.3,
+            this.yPosition - this.hitboxRadius * 1.6,
+            this.image.width*1.3,
+            this.image.height*1.3
         );
 
-        if(Game.debugModeIsOn) {
+        if(debugModeIsOn) {
             Canvas.drawCircle(
-                this.xpos, 
-                this.ypos, 
-                this.radius, 
-                this.color
+                this.xPosition, 
+                this.yPosition, 
+                this.hitboxRadius, 
+                hitboxColor
             );
         }
     }
 
     update() {
-        this.xpos += this.xspeed;
+        this.xPosition += this.xSpeed;
 
-        if(this.xpos < -1000)
-        this.destroy();
+        if(this.xPosition < destructionXPosition) {
+            this.destroy();
+        }
 
-        let bird = Game.getScene().bird;
         if  (
             Utility.theseCirclesCollide(
-            bird.xpos, bird.ypos, bird.radius,
-            this.xpos, this.ypos, this.radius)
-            ) 
+            bird.xPosition, bird.yPosition, bird.hitboxRadius,
+            this.xPosition, this.yPosition, this.hitboxRadius)
+            && gameState == "action") 
         {
-            Game.gameOverSound.play();
-            alert("Game Over");
-            window.location.reload(true);
+            bird.canFlap = false;
+            gameOverSound.play();
+            gameState = "gameover";
         }
     }
+
+    static getRandomYPosition() {
+        return Utility.randomBetween(0, Canvas.getHeight());
+    }
+
 }

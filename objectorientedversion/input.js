@@ -15,7 +15,7 @@ document.addEventListener("keydown", function(event) {
         if(bird.yAccelleration == 0) {
             bird.yAccelleration = 0.2;
         }
-        bird.ySpeed = bird.flapForce;
+        bird.flapwings();
         bird.canFlap = false;
         bird.flapSound.currentTime = 0.1;
         bird.flapSound.play();
@@ -25,14 +25,12 @@ document.addEventListener("keydown", function(event) {
     // reset the game if the restart key is pressed
     if(gameState == "gameover" && event.key == restartKey) {
         gameState = "menu";
-        bird.YPosition = birdData.yPositition;
-        bird.YSpeed = birdData.ySpeed;
-        bird.YAccelleration = birdStartYAccelleration;
+        bird.yPosition = Bird.data.yPosition;
+        bird.ySpeed = 0;
+        bird.yAccelleration = 0;
         bird.canFlap = false;
-        //fireballs = [];
-        //fireballTimeSinceLastSpawn = fireballSpawnInterval;
-        //scoreboardValue = 0;
-        //coins = [];
+        GameObject.destroyAllWithTag("fireball");
+        scoreboard.value = 0;
         return; 
     }
 

@@ -16,5 +16,25 @@ function update() {
             Cloud.data.xSpeed
         );
         Cloud.timeSinceLastSpawn = 0;
-    }    
+    }
+
+    // spawn new fireballs if it is time
+    if(gameState == "action" &&
+    Fireball.timeSinceLastSpawn>Fireball.spawnInterval) {
+        new Fireball (
+            Fireball.data.drawOrder,
+            Fireball.data.image,
+            Fireball.data.xPosition,
+            Fireball.getRandomYPosition(),
+            Fireball.data.hitboxRadius,
+            Fireball.data.xSpeed
+
+        );
+        Fireball.timeSinceLastSpawn = 0;
+    }
+
+    if(gameState == "action") {
+        Fireball.timeSinceLastSpawn += timeBetweenUpdates;
+    }
+
 }

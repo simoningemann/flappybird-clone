@@ -2,9 +2,10 @@ class GameObject {
 
     static gameObjects = [];
 
-    constructor (drawOrder) {
+    constructor (drawOrder, tag) {
         // higher draworder is drawn in front
         this.drawOrder = drawOrder;
+        this.tag = tag;
         GameObject.gameObjects.push(this);
         GameObject.sortAllByDrawOrder();
 
@@ -63,5 +64,11 @@ class GameObject {
 
     static destroyAll () {
         GameObject.gameObjects = [];
+    }
+
+    static destroyAllWithTag(tag) {
+        GameObject.gameObjects = 
+        GameObject.gameObjects
+        .filter(x => x.tag != tag);
     }
 }

@@ -15,7 +15,7 @@ const destructionXPosition = -1000;
 let bird = new Bird(
     Bird.data.drawOrder,
     Bird.data.xPosition,
-    Bird.data.yPositition,    
+    Bird.data.yPosition,    
     Bird.data.ySpeed,
     Bird.data.yAccelleration,
     Bird.data.hitboxRadius,     
@@ -66,15 +66,6 @@ new Cloud (
 );
 
 /*
-
-// fireball variables
-const fireballImage = loadImage("../assets/images/fireball.png");
-const fireballXSpeed = -3.5;
-const fireballHitboxRadius = 100;
-const fireballSpawnInterval = 2000;
-let fireballTimeSinceLastSpawn = fireballSpawnInterval;
-let fireballs = [];
-
 // coin variables
 const coinSound = new Audio("../assets/sounds/coin.wav");
 const coinImage = scoreboardImage;
