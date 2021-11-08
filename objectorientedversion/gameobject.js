@@ -6,6 +6,7 @@ class GameObject {
         // higher draworder is drawn in front
         this.drawOrder = drawOrder;
         this.tag = tag;
+        this.isActive = true;
         GameObject.gameObjects.push(this);
         GameObject.sortAllByDrawOrder();
 
@@ -13,8 +14,9 @@ class GameObject {
 
     static drawAll() {
         let objects = GameObject.gameObjects;
-        for (let i = 0; i < objects.length; i++) {
-            objects[i].draw();
+        for (let object of GameObject.gameObjects) {
+            if (object.isActive)
+                object.draw();
         }
     }
 

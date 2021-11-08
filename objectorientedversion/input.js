@@ -5,6 +5,8 @@ document.addEventListener("keydown", function(event) {
         if (music.paused) music.play();
         gameState = "action";
         bird.canFlap = true;
+        startText.isActive = false;
+        flapText.isActive = true;
         return; 
     }
 
@@ -19,6 +21,7 @@ document.addEventListener("keydown", function(event) {
         bird.canFlap = false;
         bird.flapSound.currentTime = 0.1;
         bird.flapSound.play();
+        flapText.isActive = false;
         return;
     }
 
@@ -30,7 +33,11 @@ document.addEventListener("keydown", function(event) {
         bird.yAccelleration = 0;
         bird.canFlap = false;
         GameObject.destroyAllWithTag("fireball");
+        GameObject.destroyAllWithTag("coin");
         scoreboard.value = 0;
+        gameOverText.isActive = false;
+        startText.isActive = true;
+
         return; 
     }
 

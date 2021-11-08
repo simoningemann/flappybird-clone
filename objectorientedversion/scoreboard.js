@@ -53,6 +53,6 @@ class Scoreboard extends GameObject {
     }
 
     addPoints (points) {
-        this.score += points;
+        this.value += points;
     }
 }

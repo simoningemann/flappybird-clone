@@ -2,24 +2,25 @@ class Fireball extends GameObject {
 
     static data = {
         drawOrder: 10,
+        tag: "fireball",
         image: Utility.loadImage("../assets/images/fireball.png"),
         xPosition: Canvas.getWidth() + 200,
         xSpeed: -3.5,
         hitboxRadius: 100
     }
 
-    static spawnInterval = 2000;
-    static timeSinceLastSpawn = 2000;
-
-    constructor (drawOrder, image, xPosition, yPosition,
-        hitboxRadius, xSpeed) {
-        super(drawOrder, "fireball");
+    constructor (drawOrder, tag, image, 
+        xPosition, yPosition, hitboxRadius, xSpeed) {
+        super(drawOrder, tag);
         this.image = image;
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.hitboxRadius = hitboxRadius;
         this.xSpeed = xSpeed;
     }
+
+    static spawnInterval = 2000;
+    static timeSinceLastSpawn = 2000;
 
     draw() {
         Canvas.drawImage(
@@ -55,6 +56,7 @@ class Fireball extends GameObject {
         {
             bird.canFlap = false;
             gameOverSound.play();
+            gameOverText.isActive = true;
             gameState = "gameover";
         }
     }

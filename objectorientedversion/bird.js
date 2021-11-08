@@ -59,6 +59,7 @@ class Bird extends GameObject {
             this.canFlap = false;
             gameOverSound.play();
             gameState = "gameover";
+            gameOverText.isActive = true;
         }
         
     }

@@ -1,4 +1,4 @@
-class Text extends GameObject {
+class TextObject extends GameObject {
 
     constructor(drawOrder, text, xPosition, yPosition,
         size, color) {

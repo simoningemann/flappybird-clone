@@ -5,7 +5,7 @@ function update() {
     GameObject.drawAll();
     GameObject.updateAll();
 
-    // spawn a new cloud when it is time
+    // spawn a new cloud when if is time
     Cloud.timeSinceLastSpawn += timeBetweenUpdates;
     if(Cloud.timeSinceLastSpawn>Cloud.spawnInterval) {
         new Cloud (
@@ -20,9 +20,10 @@ function update() {
 
     // spawn new fireballs if it is time
     if(gameState == "action" &&
-    Fireball.timeSinceLastSpawn>Fireball.spawnInterval) {
+    Fireball.timeSinceLastSpawn > Fireball.spawnInterval) {
         new Fireball (
             Fireball.data.drawOrder,
+            Fireball.data.tag,
             Fireball.data.image,
             Fireball.data.xPosition,
             Fireball.getRandomYPosition(),
@@ -36,5 +37,25 @@ function update() {
     if(gameState == "action") {
         Fireball.timeSinceLastSpawn += timeBetweenUpdates;
     }
+
+     // spawn new coins
+     if(gameState == "action" &&
+     Coin.timeSinceLastSpawn>Coin.spawnInterval) {
+         new Coin (
+            Coin.data.drawOrder,
+            Coin.data.tag,
+            Coin.data.image,
+            Coin.data.sound,
+            Coin.data.xPosition,
+            Coin.getRandomYPosition(),
+            Coin.data.hitboxRadius,
+            Coin.data.xSpeed
+         );
+         Coin.timeSinceLastSpawn = 0;
+     }
+ 
+     if(gameState == "action") {
+         Coin.timeSinceLastSpawn += timeBetweenUpdates;
+     }
 
 }
