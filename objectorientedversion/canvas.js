@@ -7,7 +7,6 @@ class Canvas {
             document.createElement("canvas"));
         this.canvas.width = window.innerWidth * 0.9;
         this.canvas.height = window.innerHeight * 0.9;
-        this.canvas.color = "#b3d9ff";
     }
 
     static getHeight() {
@@ -18,13 +17,13 @@ class Canvas {
         return Canvas.#instance.canvas.width;
     }
 
-    static drawBackground () {
+    static fillBackground (color) {
         let canvas = Canvas.#instance.canvas;
         Canvas.drawRect(
             0, 0,
             canvas.width, 
             canvas.height,
-            canvas.color
+            color
         );
     }
 
@@ -36,7 +35,7 @@ class Canvas {
 
     static drawCircle (xpos, ypos, radius, color) {
         let ctx = Canvas.#instance.canvas.getContext("2d");
-        ctx.fillStyle = color; 
+        ctx.strokeStyle = color; 
         ctx.beginPath();
         ctx.arc(
             xpos,
@@ -44,7 +43,7 @@ class Canvas {
             radius,
             0, 2 * Math.PI
         );
-        ctx.fill();
+        ctx.stroke();
     }
 
     static drawImage (img, xpos, ypos, width, height) {
@@ -52,11 +51,11 @@ class Canvas {
         ctx.drawImage(img, xpos, ypos, width, height);
     }
 
-    static drawText (params) {
+    static drawText (text, xPosition, yPosition, size, color) {
         let ctx = Canvas.#instance.canvas.getContext("2d");
-        ctx.font = "" + params.size + "px Comic Sans MS";
-        ctx.fillStyle = params.color;
-        ctx.fillText(params.text, params.xpos, params.ypos); 
+        ctx.font = "" + size + "px Comic Sans MS";
+        ctx.fillStyle = color;
+        ctx.fillText(text, xPosition, yPosition); 
     }
     
 }

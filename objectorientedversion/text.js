@@ -1,16 +1,23 @@
 class Text extends GameObject {
 
-    constructor(params) {
-        super({draworder: params.draworder})
-        this.text = params.text;
-        this.xpos = params.xpos;
-        this.ypos = params.ypos;
-        this.size = params.size;
-        this.color = params.color;
+    constructor(drawOrder, text, xPosition, yPosition,
+        size, color) {
+        super(drawOrder)
+        this.text = text;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+        this.size = size;
+        this.color = color;
     }
 
     draw() {
-        Canvas.drawText(this);
+        Canvas.drawText(
+            this.text,
+            this.xPosition,
+            this.yPosition,
+            this.size,
+            this.color
+        );
     }
 
 }

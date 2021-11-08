@@ -1,5 +1,5 @@
 # flappybird-clone
-Dette er et worked example til programmering- og informatikundervisning i gymnasiet. Spillet er inspireret af det kendte spil Flappy Bird og er lavet med JavaScript og HTML Canvas.
+Dette er et worked example til IT-fagene i gymnasiet. Spillet er inspireret af det kendte spil Flappy Bird og er lavet med JavaScript og HTML Canvas.
 
 Billeder og lyd lånt fra:
 https://freesound.org/people/DominikBraun/

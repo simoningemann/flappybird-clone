@@ -1,28 +1,51 @@
 class Scoreboard extends GameObject {
 
-    constructor (params) {
-        super({draworder: params.draworder});
-        this.xpos = params.xpos;
-        this.ypos = params.ypos;
-        this.color = params.color;
-        this.score = params.score;
-        this.image = params.image;
+    // standard paramaters for making a scoreboard
+    static data = {
+        drawOrder: 9,
+        image: Utility.loadImage("../assets/images/coin.png"),
+        imageXPosition: 25,
+        imageYPosition: 25,
+        imageWidth: 40,
+        imageHeight: 40,
+        value: 0,
+        textXPosition: 65,
+        textYPosition: 55,
+        textSize: 30,
+        textColor: "yellow"
+    }
+
+    constructor (drawOrder, image, imageXPosition, 
+        imageYPosition, imageWidth, imageHeight, value,
+        textXPosition, textYPosition, textSize, textColor) {
+        super(drawOrder);
+        this.image = image;
+        this.imageXPosition = imageXPosition;
+        this.imageYPosition = imageYPosition;
+        this.imageWidth = imageWidth;
+        this.imageHeight = imageHeight;
+        this.value = value;
+        this.textXPosition = textXPosition;
+        this.textYPosition = textYPosition;
+        this.textSize = textSize;
+        this.textColor = textColor;
+        
     }
 
     draw() {
         Canvas.drawImage(this.image,
-            this.xpos,
-            this.ypos,
-            40,
-            40
+            this.imageXPosition,
+            this.imageYPosition,
+            this.imageWidth,
+            this.imageHeight
         );
-        Canvas.drawText({
-            text: "x"+ this.score,
-            xpos: this.xpos + 40,
-            ypos: this.ypos + 30,
-            size: 30,
-            color: "yellow"
-        });
+        Canvas.drawText(
+            "x"+ this.value,
+            this.textXPosition,
+            this.textYPosition,
+            this.textSize,
+            this.textColor
+        );
     }
 
     update () {

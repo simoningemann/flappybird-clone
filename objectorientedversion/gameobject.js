@@ -2,11 +2,9 @@ class GameObject {
 
     static gameObjects = [];
 
-    constructor (params) {
+    constructor (drawOrder) {
         // higher draworder is drawn in front
-        this.draworder = 
-        params.draworder == undefined ? 0 : params.draworder;
-
+        this.drawOrder = drawOrder;
         GameObject.gameObjects.push(this);
         GameObject.sortAllByDrawOrder();
 
@@ -36,7 +34,7 @@ class GameObject {
 
             // j is the temporary index for searching
             for(let j = i; j < result.length; j++) {
-                if(result[s].draworder > result[j].draworder) {
+                if(result[s].drawOrder > result[j].drawOrder) {
                     s = j;
                 }
             }

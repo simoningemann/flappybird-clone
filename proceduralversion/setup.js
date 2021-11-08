@@ -8,7 +8,7 @@ const timeBetweenUpdates = 10; //milliseconds
 const debugModeIsOn = true;
 const startKey = "s";
 const restartKey = "r";
-const hitboxColor = "green";
+const hitboxColor = "#00FF02";
 const destructionXPosition = -1000;
 
 // bird variables

@@ -1,56 +1,69 @@
 class Bird extends GameObject {
 
-    constructor (params) {
-        super({draworder: params.draworder});
-        this.xpos = params.xpos;
-        this.ypos = params.ypos;
-        this.radius = params.radius;
-        this.color = params.color;
-        this.image = params.image;
-        this.yspeed = params.yspeed;
-        this.yaccelleration = params.yaccelleration;
-        let bird = this;
-        /*document.addEventListener("keydown", function(event) {
-            bird.flapwings(event.key);
-        });*/
+    // standard parameters for making a bird
+    static data = {
+        drawOrder: 8,
+        xPosition: 250,
+        yPositition: 250,
+        ySpeed: 0,
+        yAccelleration: 0,
+        hitboxRadius: 25,
+        image: Utility.loadImage("../assets/images/bird.png"),
+        flapSound: new Audio("../assets/sounds/flap.wav"),
+        flapForce: -5,
+        flapKey: " ", //space
+        canFlap: false
+    }
+
+    // constructor for a bird object
+    constructor (drawOrder, xPosition, yPosition,
+        ySpeed, yAccelleration,hitboxRadius,image,
+        flapSound, flapForce, flapKey, canFlap) {
+        super(drawOrder);
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+        this.ySpeed = ySpeed;
+        this.yAccelleration = yAccelleration;
+        this.hitboxRadius = hitboxRadius;
+        this.image = image;
+        this.flapSound = flapSound;
+        this.flapForce = flapForce;
+        this.flapKey = flapKey;
+        this.canFlap = canFlap;
     }
 
     draw() {
         Canvas.drawImage(this.image,
-            this.xpos - this.radius * 1.5,
-            this.ypos - this.radius * 1.5,
-            this.radius * 3,
-            this.radius * 3
+            this.xPosition - this.hitboxRadius * 1.5,
+            this.yPosition - this.hitboxRadius * 1.5,
+            this.hitboxRadius * 3,
+            this.hitboxRadius * 3
         );
 
-        if(Game.debugModeIsOn) {
+        if(debugModeIsOn) {
             Canvas.drawCircle(
-                this.xpos, 
-                this.ypos, 
-                this.radius, 
-                this.color
+                this.xPosition, 
+                this.yPosition, 
+                this.hitboxRadius, 
+                hitboxColor
             );
         }
     }
 
     update () {
-        this.yspeed += this.yaccelleration;
-        this.ypos += this.yspeed;
+        this.ySpeed += this.yAccelleration;
+        this.yPosition += this.ySpeed;
 
-        if(Canvas.getHeight() < this.ypos || this.ypos < 0) {
-            Game.gameOverSound.play();
+        if(Canvas.getHeight() < this.yPosition || this.yPosition < 0) {
+            gameOverSound.play();
             alert("Game Over");
             window.location.reload(true);
 
         }
         
-        
-        if(Input.keyIsPressed(" ")) {
-            this.flapwings();
-        }
     }
 
     flapwings () {
-            this.yspeed = -5;
+            this.ySpeed = -5;
     }
 }

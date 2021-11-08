@@ -1,26 +1,45 @@
 class Cloud extends GameObject {
 
-    static image = Utility.loadImage("../assets/images/cloud.png");
+    static data = {
+    drawOrder: 0,
+    image: Utility.loadImage("../assets/images/cloud.png"),
+    xPosition: Canvas.getWidth(),
+    xSpeed: -.5
+    }
 
-    constructor (params) {
-    super({draworder: params.draworder});
-        this.xpos = params.xpos;
-        this.ypos = params.ypos; 
-        this.xspeed = params.xspeed;
+    static timeSinceLastSpawn= 0; // milliseconds
+    static spawnInterval = 10000; // milliseconds
+
+    constructor (drawOrder, image, xPosition, yPosition, xSpeed) {
+        super(drawOrder);
+        this.image = image;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition; 
+        this.xSpeed = xSpeed;
     }
 
     draw() {
         Canvas.drawImage(
-            Cloud.image,
-            this.xpos,
-            this.ypos,
-            Cloud.image.width/4,
-            Cloud.image.height/4
+            this.image,
+            this.xPosition,
+            this.yPosition,
+            Cloud.data.image.width/4,
+            Cloud.data.image.height/4
         );
     }
 
     update() {
-        this.xpos += this.xspeed;
+        //move cloud to the left
+        this.xPosition += this.xSpeed;
+
+        //destroy cloud if it moves too far left
+        if(this.xPosition < destructionXPosition) {
+            this.destroy();
+        }
+    }
+
+    static getRandomYPosition () {
+        return Utility.randomBetween(0, Canvas.getHeight()/2);
     }
 
 }
