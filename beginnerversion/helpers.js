@@ -1,8 +1,17 @@
 let canvas = document.body.appendChild(
     document.createElement("canvas")
 );
-canvas.width = window.innerWidth * 0.9;
-canvas.height = window.innerHeight * 0.9;
+// ideal screen dimentions 1920 x 1080
+let canvasScale = window.innerWidth/1920;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// make the game scale to the size of the browser window
+window.onresize = function () {
+    canvasScale = window.innerWidth/1920;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight; 
+}
 
 function loadImage (path) {
     let image = document.createElement("img");

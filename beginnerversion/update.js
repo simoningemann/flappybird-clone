@@ -11,8 +11,8 @@ function update() {
             cloudImage,
             clouds[i][0],
             clouds[i][1],
-            cloudImage.width/4,
-            cloudImage.height/4
+            cloudImage.width,
+            cloudImage.height
         );
         // update the x position of the cloud
         clouds[i][0] += cloudXSpeed;
@@ -71,8 +71,8 @@ function update() {
         drawImage(coinImage,
             coins[i][0] - coinHitboxRadius * 1.3,
             coins[i][1] - coinHitboxRadius * 1.3,
-            coinImage.width*.1,
-            coinImage.height*.1
+            coinImage.width,
+            coinImage.height
         );
 
         if(debugModeIsOn) {
@@ -138,8 +138,8 @@ function update() {
         drawImage(fireballImage,
             fireballs[i][0] - fireballHitboxRadius * 2.3,
             fireballs[i][1] - fireballHitboxRadius * 1.6,
-            fireballImage.width*1.3,
-            fireballImage.height*1.3
+            fireballImage.width,
+            fireballImage.height
         );
 
         if(debugModeIsOn) { // draw the hotbox

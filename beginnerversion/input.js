@@ -12,7 +12,7 @@ document.addEventListener("keydown", function(event) {
     if (gameState == "action" && 
     event.key == birdFlapKey && 
     canBirdFlap == true) {
-        if(birdYAccelleration == 0) birdYAccelleration = 0.2;
+        if(birdYAccelleration == 0) birdYAccelleration = birdBeginningYAccelleration;
         birdYSpeed = birdFlapForce;
         canBirdFlap = false;
         birdFlapSound.currentTime = 0.1;
