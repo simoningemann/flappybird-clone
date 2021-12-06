@@ -11,6 +11,10 @@ const startKey = "s";
 const restartKey = "r";
 const hitboxColor = "#00FF02";
 const destructionXPosition = -1000 * canvasScale;
+let timeOfLastFrame;
+let timeOfCurrentFrame;
+let deltaTime;
+let timeScale;
 
 // bird variables
 const birdStartYPosition = 250 * canvasScale;
@@ -44,8 +48,6 @@ let scoreboardValue = 0;
 
 // cloud variables
 const cloudImage = loadImage("../assets/images/cloud.png");
-cloudImage.width *= .5*canvasScale;
-cloudImage.height *= .5*canvasScale;
 const cloudSpawnInterval = 10000; // milliseconds
 let cloudTimeSinceLastSpawn = 0; // milliseconds
 const cloudXSpeed = -.5  * canvasScale;
@@ -66,8 +68,6 @@ let clouds = [
 
 // fireball variables
 const fireballImage = loadImage("../assets/images/fireball.png");
-fireballImage.width *=  1.3 * canvasScale;
-fireballImage.height *= 1.3 * canvasScale;
 const fireballXSpeed = -3.5 * canvasScale;
 const fireballHitboxRadius = 100  * canvasScale;
 const fireballSpawnInterval = 2000;
@@ -77,8 +77,6 @@ let fireballs = [];
 // coin variables
 const coinSound = new Audio("../assets/sounds/coin.wav");
 const coinImage = scoreboardImage;
-coinImage.width *= 0.125 * canvasScale
-coinImage.height *= 0.125  * canvasScale
 const coinHitboxRadius = 31  * canvasScale;
 const coinXSpeed = -3  * canvasScale;
 const coinSpawnInterval = 1000;
@@ -96,4 +94,13 @@ const menuTextSize = 60  * canvasScale;
 const menuTextColor = "yellow";
 const gameOverText = "Press " + restartKey + " to restart";
 const gameOverTextXPosition = menuFirstTextXPosition;
-const gameOverTextYPosition = menuFirstTextYPosition; 
+const gameOverTextYPosition = menuFirstTextYPosition;
+
+function scaleImages() {
+    coinImage.width *= 0.125 * canvasScale
+    coinImage.height *= 0.125  * canvasScale
+    fireballImage.width *=  1.3 * canvasScale;
+    fireballImage.height *= 1.3 * canvasScale;
+    cloudImage.width *= .5*canvasScale;
+    cloudImage.height *= .5*canvasScale;
+}

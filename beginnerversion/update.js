@@ -1,9 +1,26 @@
 
 // execute the update function every 10 milliseconds
-setInterval(update, timeBetweenUpdates);
 function update() {
-
+    timeOfCurrentFrame = new Date().getTime();
+    if(timeOfLastFrame == undefined)
+        timeOfLastFrame = timeOfCurrentFrame -10;
+    deltaTime = timeOfCurrentFrame - timeOfLastFrame;
+    timeScale = deltaTime / timeBetweenUpdates;
+    timeOfLastFrame = timeOfCurrentFrame;
+    
     fillBackground("#b3d9ff");
+
+    if(debugModeIsOn) {
+        drawText(
+            "timeScale: " + timeScale,
+            canvas.width/2,
+            20,
+            12,
+            "black"
+        );
+    }
+    //alert(timeScale)
+
     // for every cloud
     for(let i = 0; i < clouds.length; i++) {
         // draw the cloud
@@ -15,7 +32,7 @@ function update() {
             cloudImage.height
         );
         // update the x position of the cloud
-        clouds[i][0] += cloudXSpeed;
+        clouds[i][0] += cloudXSpeed * timeScale;
         // remove cloud if it moves beyond the destruction point
         if(clouds[i][0] < destructionXPosition) {
             clouds = removeIndexAndReturn(clouds, i);
@@ -24,7 +41,7 @@ function update() {
 
     }
     // spawn a new cloud when the it is time
-    cloudTimeSinceLastSpawn += timeBetweenUpdates;
+    cloudTimeSinceLastSpawn += deltaTime;
     if(cloudTimeSinceLastSpawn>cloudSpawnInterval) {
         clouds.push([
             canvas.width,
@@ -52,8 +69,8 @@ function update() {
     }
 
     // update the bird movement
-    birdYSpeed += birdYAccelleration;
-    birdYPosition += birdYSpeed;
+    birdYSpeed += birdYAccelleration * timeScale;
+    birdYPosition += birdYSpeed * timeScale;
 
     if (gameState == "action") {
         // end the game if the bird touches the canvas edge
@@ -85,7 +102,7 @@ function update() {
         }
 
         // move the coin
-        coins[i][0] += coinXSpeed;
+        coins[i][0] += coinXSpeed * timeScale;
 
 
         if(gameState == "action") {
@@ -127,7 +144,7 @@ function update() {
     }
 
     if(gameState == "action") {
-        coinTimeSinceLastSpawn += timeBetweenUpdates;
+        coinTimeSinceLastSpawn += deltaTime;
     }
 
 
@@ -152,7 +169,7 @@ function update() {
         }
 
         // move the fireball
-        fireballs[i][0] += fireballXSpeed;
+        fireballs[i][0] += fireballXSpeed * timeScale;
 
         // remove fireball if it goes off the screen
         if(fireballs[i][0]<destructionXPosition) {
@@ -188,7 +205,7 @@ function update() {
     }
 
     if(gameState == "action") {
-        fireballTimeSinceLastSpawn += timeBetweenUpdates;
+        fireballTimeSinceLastSpawn += deltaTime;
     }
 
     //draw the scoreboard
@@ -236,3 +253,13 @@ function update() {
         )
     }
 }
+
+function waitForImageToLoad() {
+    if(numOfImagesLoaded == numOfImagesToLoad) {
+        scaleImages();
+        setInterval(update, timeBetweenUpdates);
+    }
+    else
+        setTimeout(waitForImageToLoad, 1000);
+}
+waitForImageToLoad();

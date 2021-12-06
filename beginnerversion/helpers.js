@@ -6,6 +6,12 @@ let canvasScale = window.innerWidth/1920;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+console.log(
+    "canvas dimensions:",
+    canvas.width,
+    canvas.height
+);
+
 // make the game scale to the size of the browser window
 window.onresize = function () {
     canvasScale = window.innerWidth/1920;
@@ -13,11 +19,17 @@ window.onresize = function () {
     canvas.height = window.innerHeight; 
 }
 
+let numOfImagesToLoad = 0;
+let numOfImagesLoaded = 0;
+
 function loadImage (path) {
-    let image = document.createElement("img");
+    numOfImagesToLoad++;
+    let image = new Image();
     image.src = path;
+    image.onload = () => numOfImagesLoaded++;
     return image;
 }
+
     
 function theseCirclesCollide(c1x, c1y, c1r, c2x, c2y, c2r) {
     let distance = calculateDistance(
