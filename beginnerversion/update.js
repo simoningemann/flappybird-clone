@@ -117,7 +117,7 @@ function update() {
             )) 
             { // if they do, increase the score
                 coinSound.play();
-                scoreboardValue += 1;
+                scoreboardValue += coinValue;
                 coinIsMarkedForDestruction = true;
             }
         }

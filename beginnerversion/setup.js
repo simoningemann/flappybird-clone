@@ -43,7 +43,6 @@ const scoreboardTextXPosition = 100 * canvasScale;
 const scoreboardTextYPosition = 90 * canvasScale;
 const scoreboardTextSize = 50 * canvasScale;
 const scoreboardTextColor = "yellow";
-
 let scoreboardValue = 0;
 
 // cloud variables
@@ -80,6 +79,7 @@ const coinImage = scoreboardImage;
 const coinHitboxRadius = 31  * canvasScale;
 const coinXSpeed = -3  * canvasScale;
 const coinSpawnInterval = 1000;
+const coinValue = 1;
 let coinTimeSinceLastSpawn = coinSpawnInterval
 let coins = [];
 
