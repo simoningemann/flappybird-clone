@@ -1,4 +1,3 @@
-
 // execute the update function every 10 milliseconds
 function update() {
     timeOfCurrentFrame = new Date().getTime();
@@ -19,7 +18,6 @@ function update() {
             "black"
         );
     }
-    //alert(timeScale)
 
     // for every cloud
     for(let i = 0; i < clouds.length; i++) {

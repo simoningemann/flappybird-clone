@@ -7,6 +7,19 @@ class Canvas {
             document.createElement("canvas"));
         this.canvas.width = window.innerWidth * 0.9;
         this.canvas.height = window.innerHeight * 0.9;
+
+        // ideal screen dimensions 1920 x 1080
+        this.scale = window.innerWidth/1920;
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+
+        // make the game scale to the size of the browser window
+        window.onresize = function () {
+            console.log("resize window");
+            Canvas.#instance.scale = window.innerWidth/1920;
+            Canvas.#instance.canvas.width = window.innerWidth;
+            Canvas.#instance.canvas.height = window.innerHeight; 
+        }
     }
 
     static getHeight() {
@@ -15,6 +28,10 @@ class Canvas {
 
     static getWidth() {
         return Canvas.#instance.canvas.width;
+    }
+
+    static getScale() {
+        return Canvas.#instance.scale;
     }
 
     static fillBackground (color) {

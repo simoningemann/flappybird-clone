@@ -5,8 +5,8 @@ class Fireball extends GameObject {
         tag: "fireball",
         image: Utility.loadImage("../assets/images/fireball.png"),
         xPosition: Canvas.getWidth() + 200,
-        xSpeed: -3.5,
-        hitboxRadius: 100
+        xSpeed: -3.5 * Canvas.getScale(),
+        hitboxRadius: 100 * Canvas.getScale()
     }
 
     constructor (drawOrder, tag, image, 
@@ -42,7 +42,7 @@ class Fireball extends GameObject {
     }
 
     update() {
-        this.xPosition += this.xSpeed;
+        this.xPosition += this.xSpeed * timeScale;
 
         if(this.xPosition < destructionXPosition) {
             this.destroy();

@@ -14,9 +14,6 @@ document.addEventListener("keydown", function(event) {
     if (gameState == "action" && 
     event.key == bird.flapKey && 
     bird.canFlap == true) {
-        if(bird.yAccelleration == 0) {
-            bird.yAccelleration = 0.2;
-        }
         bird.flapwings();
         bird.canFlap = false;
         bird.flapSound.currentTime = 0.1;
@@ -30,7 +27,7 @@ document.addEventListener("keydown", function(event) {
         gameState = "menu";
         bird.yPosition = Bird.data.yPosition;
         bird.ySpeed = 0;
-        bird.yAccelleration = 0;
+        bird.yAccelleration = Bird.data.yAccelleration;
         bird.canFlap = false;
         GameObject.destroyAllWithTag("fireball");
         GameObject.destroyAllWithTag("coin");

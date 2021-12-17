@@ -10,6 +10,10 @@ const startKey = "s";
 const restartKey = "r";
 const hitboxColor = "#00FF02";
 const destructionXPosition = -1000;
+let timeOfLastFrame;
+let timeOfCurrentFrame;
+let deltaTime;
+let timeScale;
 
 //make the bird
 let bird = new Bird(
@@ -53,14 +57,14 @@ new Cloud (
 new Cloud (
     Cloud.data.drawOrder,
     Cloud.data.image,
-    Cloud.data.xPosition-1000,
+    Cloud.data.xPosition-1000 * Canvas.getScale(),
     Cloud.getRandomYPosition(),
     Cloud.data.xSpeed
 );
 new Cloud (
     Cloud.data.drawOrder,
     Cloud.data.image,
-    Cloud.data.xPosition-500,
+    Cloud.data.xPosition-500 * Canvas.getScale(),
     Cloud.getRandomYPosition(),
     Cloud.data.xSpeed
 );
@@ -71,18 +75,18 @@ new Cloud (
 let startText = new TextObject(
     10, // drawOrder
     "Press " + startKey + " to start", // text
-    225, //xPosition
-    350, //yPosition
-    40, // size
+    400 * Canvas.getScale(), //xPosition
+    400 * Canvas.getScale(), //yPosition
+    80 * Canvas.getScale(), // size
     "yellow" // color
 );
 
 let flapText = new TextObject(
     10,
     "Press space to flap wings",
-    225,
-    410,
-    40,
+    300 * Canvas.getScale(),
+    400 * Canvas.getScale(),
+    80 * Canvas.getScale(),
     "yellow"
 );
 flapText.isActive = false;
@@ -90,9 +94,19 @@ flapText.isActive = false;
 let gameOverText = new TextObject (
     10,
     "Press " + restartKey + " to restart",
-    225,
-    350,
-    40,
+    300 * Canvas.getScale(),
+    400 * Canvas.getScale(),
+    80 * Canvas.getScale(),
     "yellow"
 );
 gameOverText.isActive = false;
+
+function scaleImages() {
+    Scoreboard.data.image.width *= Canvas.getScale();
+    Scoreboard.data.image.height *= Canvas.getScale();
+    Fireball.data.image.height *= Canvas.getScale();
+    Fireball.data.image.width *= Canvas.getScale();
+    Cloud.data.image.width *= Canvas.getScale() * .5;
+    Cloud.data.image.height *= Canvas.getScale() * .5;
+}
+

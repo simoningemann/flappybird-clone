@@ -1,9 +1,14 @@
 class Utility {
 
+    static numOfImagesToLoad = 0;
+    static numOfImagesLoaded = 0;
+
     static loadImage (path) {
-        let img = document.createElement("img");
-        img.src = path;
-        return img;
+        Utility.numOfImagesToLoad++;
+        let image = new Image();
+        image.src = path;
+        image.onload = () => Utility.numOfImagesLoaded++;
+        return image;
     }
     
     static theseCirclesCollide(c1x, c1y, c1r, c2x, c2y, c2r) {

@@ -4,14 +4,14 @@ class Scoreboard extends GameObject {
     static data = {
         drawOrder: 9,
         image: Utility.loadImage("../assets/images/coin.png"),
-        imageXPosition: 25,
-        imageYPosition: 25,
-        imageWidth: 40,
-        imageHeight: 40,
+        imageXPosition: 40 * Canvas.getScale(),
+        imageYPosition: 40 * Canvas.getScale(),
+        imageWidth: 80 * Canvas.getScale(),
+        imageHeight: 80 * Canvas.getScale(),
         value: 0,
-        textXPosition: 65,
-        textYPosition: 55,
-        textSize: 30,
+        textXPosition: 130 * Canvas.getScale(),
+        textYPosition: 110 * Canvas.getScale(),
+        textSize: 60 * Canvas.getScale(),
         textColor: "yellow"
     }
 

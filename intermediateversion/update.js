@@ -1,11 +1,19 @@
 // execute the update function every 10 milliseconds
-setInterval(update, timeBetweenUpdates);
 function update() {
+
+    timeOfCurrentFrame = new Date().getTime();
+    if(timeOfLastFrame == undefined)
+        timeOfLastFrame = timeOfCurrentFrame -10;
+    deltaTime = timeOfCurrentFrame - timeOfLastFrame;
+    timeScale = deltaTime / timeBetweenUpdates;
+    timeOfLastFrame = timeOfCurrentFrame;
+
+
     Canvas.fillBackground("#b3d9ff");
     GameObject.drawAll();
     GameObject.updateAll();
 
-    // spawn a new cloud when if is time
+    // spawn a new cloud when if it is time
     Cloud.timeSinceLastSpawn += timeBetweenUpdates;
     if(Cloud.timeSinceLastSpawn>Cloud.spawnInterval) {
         new Cloud (
@@ -59,3 +67,13 @@ function update() {
      }
 
 }
+
+function waitForImageToLoad() {
+    if(Utility.numOfImagesLoaded == Utility.numOfImagesToLoad) {
+        scaleImages();
+        setInterval(update, timeBetweenUpdates);
+    }
+    else
+        setTimeout(waitForImageToLoad, 100);
+}
+waitForImageToLoad();

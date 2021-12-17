@@ -1,16 +1,10 @@
 let canvas = document.body.appendChild(
     document.createElement("canvas")
 );
-// ideal screen dimentions 1920 x 1080
+// ideal screen dimensions 1920 x 1080
 let canvasScale = window.innerWidth/1920;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
-console.log(
-    "canvas dimensions:",
-    canvas.width,
-    canvas.height
-);
 
 // make the game scale to the size of the browser window
 window.onresize = function () {

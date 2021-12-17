@@ -5,9 +5,9 @@ class Coin extends GameObject {
         tag: "coin",
         image: Utility.loadImage("../assets/images/coin.png"),
         sound: new Audio("../assets/sounds/coin.wav"),
-        xPosition: Canvas.getWidth() +200,
-        hitboxRadius: 25,
-        xSpeed: -3
+        xPosition: Canvas.getWidth() + 200,
+        hitboxRadius: 40 * Canvas.getScale(),
+        xSpeed: -3 * Canvas.getScale()
     }
 
     static spawnInterval = 1000;
@@ -28,8 +28,8 @@ class Coin extends GameObject {
         Canvas.drawImage(this.image,
             this.xPosition - this.hitboxRadius * 1.3,
             this.yPosition - this.hitboxRadius * 1.3,
-            this.image.width*.1,
-            this.image.height*.1
+            this.hitboxRadius * 2.5,
+            this.hitboxRadius * 2.5
         );
 
         if(debugModeIsOn) {
@@ -43,7 +43,7 @@ class Coin extends GameObject {
     }
 
     update() {
-        this.xPosition += this.xSpeed;
+        this.xPosition += this.xSpeed * timeScale;
 
         if(this.xPosition < destructionXPosition)
         this.destroy();
