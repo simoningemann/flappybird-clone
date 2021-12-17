@@ -14,7 +14,7 @@ function update() {
     GameObject.updateAll();
 
     // spawn a new cloud when if it is time
-    Cloud.timeSinceLastSpawn += timeBetweenUpdates;
+    Cloud.timeSinceLastSpawn += deltaTime;
     if(Cloud.timeSinceLastSpawn>Cloud.spawnInterval) {
         new Cloud (
             Cloud.data.drawOrder,
@@ -43,7 +43,7 @@ function update() {
     }
 
     if(gameState == "action") {
-        Fireball.timeSinceLastSpawn += timeBetweenUpdates;
+        Fireball.timeSinceLastSpawn += deltaTime;
     }
 
      // spawn new coins
@@ -63,7 +63,7 @@ function update() {
      }
  
      if(gameState == "action") {
-         Coin.timeSinceLastSpawn += timeBetweenUpdates;
+         Coin.timeSinceLastSpawn += deltaTime;
      }
 
 }
