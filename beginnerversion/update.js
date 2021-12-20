@@ -1,59 +1,42 @@
 // execute the update function every 10 milliseconds
 function update() {
-    timeOfCurrentFrame = new Date().getTime();
-    if(timeOfLastFrame == undefined)
-        timeOfLastFrame = timeOfCurrentFrame -10;
-    deltaTime = timeOfCurrentFrame - timeOfLastFrame;
-    timeScale = deltaTime / timeBetweenUpdates;
-    timeOfLastFrame = timeOfCurrentFrame;
     
     fillBackground("#b3d9ff");
 
-    if(debugModeIsOn) {
-        drawText(
-            "timeScale: " + timeScale,
-            canvas.width/2,
-            20,
-            12,
-            "black"
-        );
-    }
-
     // for every cloud
-    for(let i = 0; i < clouds.length; i++) {
+    for(let cloud of clouds) {
         // draw the cloud
         drawImage(
             cloudImage,
-            clouds[i][0],
-            clouds[i][1],
-            cloudImage.width,
-            cloudImage.height
+            cloud.xPosition,
+            cloud.yPosition,
+            cloudImageWidth,
+            cloudImageHeight
         );
         // update the x position of the cloud
-        clouds[i][0] += cloudXSpeed * timeScale;
+        cloud.xPosition += cloudXSpeed;
         // remove cloud if it moves beyond the destruction point
-        if(clouds[i][0] < destructionXPosition) {
-            clouds = removeIndexAndReturn(clouds, i);
-            i--; // decrement i to avoid flicker
+        if(cloud.xPosition < destructionXPosition) {
+            clouds = clouds.remove(cloud);
         }
 
     }
     // spawn a new cloud when the it is time
     cloudTimeSinceLastSpawn += deltaTime;
     if(cloudTimeSinceLastSpawn>cloudSpawnInterval) {
-        clouds.push([
-            canvas.width,
-            randomBetween(0, canvas.height/2)
-        ]);
+        clouds.push({
+            xPosition: spawnXPosition,
+            yPosition: randomBetween(0, canvas.height/2), 
+        });
         cloudTimeSinceLastSpawn = 0;
     }    
 
     // draw the bird image
     drawImage(birdImage,
-        birdXPosition - birdHitboxRadius * 1.5,
-        birdYPosition - birdHitboxRadius * 1.5,
-        birdHitboxRadius * 3,
-        birdHitboxRadius * 3
+        birdXPosition,
+        birdYPosition,
+        birdImageWidth,
+        birdImageHeight
     );
 
     // draw the bird hitbox if debugmode is on
@@ -67,8 +50,8 @@ function update() {
     }
 
     // update the bird movement
-    birdYSpeed += birdYAccelleration * timeScale;
-    birdYPosition += birdYSpeed * timeScale;
+    birdYSpeed += birdYAccelleration;
+    birdYPosition += birdYSpeed;
 
     if (gameState == "action") {
         // end the game if the bird touches the canvas edge
@@ -80,27 +63,26 @@ function update() {
     }
 
     // for each coin
-    for(let i = 0; i < coins.length; i++) {
-        let coinIsMarkedForDestruction = false;
+    for(let coin of coins) {
         // draw the coin
         drawImage(coinImage,
-            coins[i][0] - coinHitboxRadius * 1.3,
-            coins[i][1] - coinHitboxRadius * 1.3,
-            coinImage.width,
-            coinImage.height
+            coin.xPosition,
+            coin.yPosition,
+            coinImageWidth,
+            coinImageHeight
         );
 
         if(debugModeIsOn) {
             drawCircle(
-                coins[i][0], 
-                coins[i][1], 
+                coin.xPosition, 
+                coin.yPosition, 
                 coinHitboxRadius, 
                 hitboxColor
             );
         }
 
         // move the coin
-        coins[i][0] += coinXSpeed * timeScale;
+        coin.xPosition += coinXSpeed;
 
 
         if(gameState == "action") {
@@ -109,35 +91,30 @@ function update() {
                 birdXPosition,
                 birdYPosition,
                 birdHitboxRadius,
-                coins[i][0],
-                coins[i][1],
+                coin.xPosition,
+                coin.yPosition,
                 coinHitboxRadius
             )) 
             { // if they do, increase the score
                 coinSound.play();
                 scoreboardValue += coinValue;
-                coinIsMarkedForDestruction = true;
+                coins = coins.remove(coin);
             }
         }
 
          // remove coin if it goes off the screen
-         if(coins[i][0]<destructionXPosition) {
-            coinIsMarkedForDestruction = true;
-        }
-
-        if(coinIsMarkedForDestruction) {
-            coins = removeIndexAndReturn(coins, i);
-            i--; // decrement i to avoid flicker
+         if(coin.xPosition < destructionXPosition) {
+            coins = coins.remove(coin);
         }
     }
 
     // spawn new coins
     if(gameState == "action" &&
     coinTimeSinceLastSpawn>coinSpawnInterval) {
-        coins.push([
-            canvas.width * 1.2,
-            randomBetween(0, canvas.height)
-        ]);
+        coins.push({
+            xPosition: spawnXPosition,
+            yPosition: randomBetween(0, canvas.height)
+        });
         coinTimeSinceLastSpawn = 0;
     }
 
@@ -148,30 +125,30 @@ function update() {
 
 
     // for each fireball
-    for(let i = 0; i < fireballs.length; i++) {
+    for(let fireball of fireballs) {
         // draw the fireball
         drawImage(fireballImage,
-            fireballs[i][0] - fireballHitboxRadius * 2.3,
-            fireballs[i][1] - fireballHitboxRadius * 1.6,
-            fireballImage.width,
-            fireballImage.height
+            fireball.xPosition,
+            fireball.yPosition,
+            fireballImageWidth,
+            fireballImageHeight
         );
 
         if(debugModeIsOn) { // draw the hotbox
             drawCircle(
-                fireballs[i][0], 
-                fireballs[i][1], 
+                fireball.xPosition, 
+                fireball.yPosition, 
                 fireballHitboxRadius, 
                 hitboxColor
             );
         }
 
         // move the fireball
-        fireballs[i][0] += fireballXSpeed * timeScale;
+        fireball.xPosition += fireballXSpeed;
 
         // remove fireball if it goes off the screen
-        if(fireballs[i][0]<destructionXPosition) {
-            fireballs = removeIndexAndReturn(fireballs, i);
+        if(fireball.xPosition < destructionXPosition) {
+            fireballs = fireballs.remove(fireball);
         }
 
         if(gameState == "action") {
@@ -180,8 +157,8 @@ function update() {
                 birdXPosition,
                 birdYPosition,
                 birdHitboxRadius,
-                fireballs[i][0],
-                fireballs[i][1],
+                fireball.xPosition,
+                fireball.yPosition,
                 fireballHitboxRadius
             )) 
             { // if they do, end the game
@@ -195,10 +172,10 @@ function update() {
     // spawn new fireballs
     if(gameState == "action" &&
     fireballTimeSinceLastSpawn>fireballSpawnInterval) {
-        fireballs.push([
-            canvas.width * 1.2,
-            randomBetween(0, canvas.height)
-        ]);
+        fireballs.push({
+            xPosition: spawnXPosition,
+            yPosition: randomBetween(0, canvas.height)
+        });
         fireballTimeSinceLastSpawn = 0;
     }
 
@@ -250,14 +227,21 @@ function update() {
             menuTextColor
         )
     }
-}
 
-function waitForImageToLoad() {
-    if(numOfImagesLoaded == numOfImagesToLoad) {
-        scaleImages();
-        setInterval(update, timeBetweenUpdates);
+    if(debugModeIsOn) {
+        drawText(
+            "deltaTime: " + deltaTime,
+            canvas.width/2,
+            20,
+            12,
+            "black"
+        );
     }
-    else
-        setTimeout(waitForImageToLoad, 1000);
+
+    // update deltaTime and draw next frame
+    timeOfCurrentFrame = new Date().getTime();
+    deltaTime = timeOfCurrentFrame - timeOfLastFrame;
+    timeOfLastFrame = timeOfCurrentFrame;
+    window.requestAnimationFrame(update);
 }
-waitForImageToLoad();
+window.requestAnimationFrame(update);

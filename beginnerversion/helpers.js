@@ -1,26 +1,19 @@
 let canvas = document.body.appendChild(
     document.createElement("canvas")
 );
+
 // ideal screen dimensions 1920 x 1080
-let canvasScale = window.innerWidth/1920;
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = 1920;
+canvas.height = 1080;
 
-// make the game scale to the size of the browser window
-window.onresize = function () {
-    canvasScale = window.innerWidth/1920;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight; 
-}
-
-let numOfImagesToLoad = 0;
-let numOfImagesLoaded = 0;
+// Make 
+let timeOfLastFrame = new Date().getTime();
+let timeOfCurrentFrame = 0;
+let deltaTime = 10;
 
 function loadImage (path) {
-    numOfImagesToLoad++;
     let image = new Image();
     image.src = path;
-    image.onload = () => numOfImagesLoaded++;
     return image;
 }
 
@@ -73,7 +66,7 @@ function drawCircle (xpos, ypos, radius, color) {
 
 function drawImage (image, xPos, yPos, width, height) {
     let context = canvas.getContext("2d");
-    context.drawImage(image, xPos, yPos, width, height);
+    context.drawImage(image, xPos-width/2, yPos-height/2, width, height);
 }
 
 function drawText (text, xPos, yPos, size, color) {
@@ -91,10 +84,12 @@ function drawBackground (color) {
     );
 };
 
-function removeIndexAndReturn(data, index) {
+Array.prototype.remove = function (elementToRemove) {
     let result = [];
-    for(let i = 0; i < data.length; i++) {
-        if(index != i) result.push(data[i]);
+    for(let element of this) {
+        if(element != elementToRemove) {
+            result.push(element);
+        }
     }
     return result;
 } 
