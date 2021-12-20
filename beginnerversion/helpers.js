@@ -2,11 +2,13 @@ let canvas = document.body.appendChild(
     document.createElement("canvas")
 );
 
+let context = canvas.getContext("2d");
+
 // ideal screen dimensions 1920 x 1080
 canvas.width = 1920;
 canvas.height = 1080;
 
-// Make 
+// make variables for calculating delta time
 let timeOfLastFrame = new Date().getTime();
 let timeOfCurrentFrame = 0;
 let deltaTime = 10;
@@ -18,62 +20,61 @@ function loadImage (path) {
 }
 
     
-function theseCirclesCollide(c1x, c1y, c1r, c2x, c2y, c2r) {
+function theseCirclesCollide(
+    circleOneX, circleOneY, circleOneRadius,
+    circleTwoX, circleTwoY, circleTwoRadius) {
+
     let distance = calculateDistance(
-        c1x, c1y, c2x, c2y
+        circleOneX, circleOneY, circleTwoX, circleTwoY
     );
-    if(distance < c1r + c2r)
+    if(distance < circleOneRadius + circleTwoRadius)
         return true;
     else
         return false;
 }
 
-function calculateDistance (p1x, p1y, p2x, p2y) {
+function calculateDistance (pointOneX, pointOneY, pointTwoX, pointTwoY) {
     // calculate the length of each side of the "triangle"
-    let a = Math.abs(p1x - p2x);
-    let b = Math.abs(p1y - p2y);
+    let a = Math.abs(pointOneX - pointTwoX);
+    let b = Math.abs(pointOneY - pointTwoY);
     // use the potagorean theorem to calculate the distance
-    let cSqaured = (a*a) + (b*b);
-    return Math.sqrt(cSqaured);
+    let cSquared = (a*a) + (b*b);
+    return Math.sqrt(cSquared);
 }
 
 function fillBackground (color) {
     drawRect(0, 0, canvas.width, canvas.height, color);
 }
 
-function drawRect (xpos, ypos, width, height, color) {
-    let context = canvas.getContext("2d");
+function drawRect (xPosition, yPosition, width, height, color) {
     context.fillStyle = color;
-    context.fillRect(xpos, ypos, width, height);
+    context.fillRect(xPosition, yPosition, width, height);
 }
 
 function randomBetween(min, max) {
     return Math.random()*(max - min)+min;
 }
 
-function drawCircle (xpos, ypos, radius, color) {
-    let context = canvas.getContext("2d");
+function drawCircle (xPosition, yPosition, radius, color) {
     context.strokeStyle = color; 
     context.beginPath();
     context.arc(
-        xpos,
-        ypos,
+        xPosition,
+        yPosition,
         radius,
         0, 2 * Math.PI
     );
     context.stroke();
 }
 
-function drawImage (image, xPos, yPos, width, height) {
-    let context = canvas.getContext("2d");
-    context.drawImage(image, xPos-width/2, yPos-height/2, width, height);
+function drawImage (image, xPositon, yPosition, width, height) {
+    context.drawImage(image, xPositon-width/2, yPosition-height/2, width, height);
 }
 
-function drawText (text, xPos, yPos, size, color) {
-    let context = canvas.getContext("2d");
+function drawText (text, xPosition, yPosition, size, color) {
     context.font = "" + size + "px Comic Sans MS";
     context.fillStyle = color;
-    context.fillText(text, xPos, yPos); 
+    context.fillText(text, xPosition, yPosition); 
 }
 
 function drawBackground (color) {

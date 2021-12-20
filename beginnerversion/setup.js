@@ -27,20 +27,20 @@ const birdFlapKey = " ";
 let birdYSpeed = birdStartYSpeed;
 let birdYAccelleration = birdStartYAccelleration;
 let birdYPosition = birdStartYPosition;
-let canBirdFlap = false;
+let birdCanFlap = false;
 
 
 // score variables
-const scoreboardImage = loadImage("../assets/images/coin.png");
-const scoreboardImageXPosition = 70;
-const scoreboardImageYPosition = 70;
-const scoreboardImageWidth = 60;
-const scoreboardImageHeight = 60;
-const scoreboardTextXPosition = 100;
-const scoreboardTextYPosition = 90;
-const scoreboardTextSize = 50;
-const scoreboardTextColor = "yellow";
-let scoreboardValue = 0;
+const scoreImage = loadImage("../assets/images/coin.png");
+const scoreImageXPosition = 70;
+const scoreImageYPosition = 70;
+const scoreImageWidth = 60;
+const scoreImageHeight = 60;
+const scoreTextXPosition = 100;
+const scoreTextYPosition = 90;
+const scoreTextSize = 50;
+const scoreTextColor = "yellow";
+let scoreValue = 0;
 
 // cloud variables
 const cloudImage = loadImage("../assets/images/cloud.png");
@@ -76,7 +76,7 @@ let fireballs = [];
 
 // coin variables
 const coinSound = new Audio("../assets/sounds/coin.wav");
-const coinImage = scoreboardImage;
+const coinImage = scoreImage;
 const coinImageWidth = 62;
 const coinImageHeight = 62;
 const coinHitboxRadius = 31;

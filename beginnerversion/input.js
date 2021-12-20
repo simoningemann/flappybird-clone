@@ -4,17 +4,17 @@ document.addEventListener("keydown", function(event) {
     if(gameState == "menu" && event.key == startKey) {
         if (music.paused) music.play();
         gameState = "action";
-        canBirdFlap = true;
+        birdCanFlap = true;
         return; 
     }
 
     // flap the wings of the bird if the flapkey is pressed
     if (gameState == "action" && 
     event.key == birdFlapKey && 
-    canBirdFlap == true) {
+    birdCanFlap == true) {
         if(birdYAccelleration == 0) birdYAccelleration = birdBeginningYAccelleration;
         birdYSpeed = birdFlapForce;
-        canBirdFlap = false;
+        birdCanFlap = false;
         birdFlapSound.currentTime = 0.1;
         birdFlapSound.play();
         return;
@@ -26,10 +26,10 @@ document.addEventListener("keydown", function(event) {
         birdYPosition = birdStartYPosition;
         birdYSpeed = birdStartYSpeed;
         birdYAccelleration = birdStartYAccelleration;
-        canBirdFlap = false;
+        birdCanFlap = false;
         fireballs = [];
         fireballTimeSinceLastSpawn = fireballSpawnInterval;
-        scoreboardValue = 0;
+        scoreValue = 0;
         coins = [];
         return; 
     }
@@ -40,7 +40,7 @@ document.addEventListener("keyup", function(event) {
 
     // make the bird able to flap again if the flapkey is released
     if (gameState == "action" && event.key == birdFlapKey) {
-        canBirdFlap = true;
+        birdCanFlap = true;
         return;
     }
 

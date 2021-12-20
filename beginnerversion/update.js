@@ -57,7 +57,7 @@ function update() {
         // end the game if the bird touches the canvas edge
         if(canvas.height < birdYPosition || birdYPosition < 0) {
             gameOverSound.play();
-            canBirdFlap = false;
+            birdCanFlap = false;
             gameState = "gameover";
         }
     }
@@ -97,7 +97,7 @@ function update() {
             )) 
             { // if they do, increase the score
                 coinSound.play();
-                scoreboardValue += coinValue;
+                scoreValue += coinValue;
                 coins = coins.remove(coin);
             }
         }
@@ -162,7 +162,7 @@ function update() {
                 fireballHitboxRadius
             )) 
             { // if they do, end the game
-                canBirdFlap = false;
+                birdCanFlap = false;
                 gameOverSound.play();
                 gameState = "gameover";
             }
@@ -185,18 +185,18 @@ function update() {
 
     //draw the scoreboard
     drawImage(
-        scoreboardImage,
-        scoreboardImageXPosition,
-        scoreboardImageYPosition,
-        scoreboardImageWidth,
-        scoreboardImageHeight
+        scoreImage,
+        scoreImageXPosition,
+        scoreImageYPosition,
+        scoreImageWidth,
+        scoreImageHeight
     );
     drawText(
-        "x"+ scoreboardValue,
-        scoreboardTextXPosition,
-        scoreboardTextYPosition,
-        scoreboardTextSize,
-        scoreboardTextColor
+        "x"+ scoreValue,
+        scoreTextXPosition,
+        scoreTextYPosition,
+        scoreTextSize,
+        scoreTextColor
     );
 
     // draw the menu text
