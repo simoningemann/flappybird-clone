@@ -7,7 +7,7 @@ const debugModeIsOn = true;
 const startKey = "s";
 const restartKey = "r";
 const hitboxColor = "#00FF02";
-const destructionXPosition = 1000;
+const destructionXPosition = -1000;
 const spawnXPosition = canvas.width * 1.2
 let gameState = "menu"; // menu, action or gameover
 
