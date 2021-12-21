@@ -49,6 +49,7 @@ class Fireball extends GameObject {
         {
             bird.canFlap = false;
             gameOverSound.play();
+            flapText.isActive = false;
             gameOverText.isActive = true;
             gameState = "gameover";
         }

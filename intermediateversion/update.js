@@ -36,6 +36,16 @@ function update() {
         Coin.timeSinceLastSpawn += timeSinceLastFrame;
     }
 
+    if(debugModeIsOn) {
+        drawText(
+            "timeSinceLastFrame: " + timeSinceLastFrame,
+            canvas.width/2,
+            20,
+            12,
+            "black"
+        );
+    }
+
     // update timeSinceLastFrame and draw next frame
     timeOfCurrentFrame = new Date().getTime();
     timeSinceLastFrame = timeOfCurrentFrame - timeOfLastFrame;

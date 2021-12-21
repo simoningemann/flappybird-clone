@@ -14,6 +14,7 @@ document.addEventListener("keydown", function(event) {
     if (gameState == "action" && 
     event.key == bird.flapKey && 
     bird.canFlap == true) {
+        if(bird.yAccelleration == 0) bird.yAccelleration = bird.beginningYAccelleration;
         bird.flap();
         bird.canFlap = false;
         bird.flapSound.currentTime = 0.1;

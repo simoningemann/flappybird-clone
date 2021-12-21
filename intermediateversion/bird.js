@@ -7,7 +7,8 @@ class Bird extends GameObject {
         this.xPosition = 250;
         this.yPosition = 250;
         this.ySpeed = 0;
-        this.yAccelleration = 0.7;
+        this.beginningYAccelleration = 0.7;
+        this.yAccelleration = 0;
         this.hitboxRadius = 30;
         this.image = new Image(90, 90);
         this.image.src = "../assets/images/bird.png";
@@ -47,6 +48,7 @@ class Bird extends GameObject {
             this.canFlap = false;
             gameOverSound.play();
             gameState = "gameover";
+            flapText.isActive = false;
             gameOverText.isActive = true;
         }
         

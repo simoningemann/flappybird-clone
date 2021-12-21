@@ -203,15 +203,18 @@ function update() {
     if(gameState == "menu") {
         drawText (
             menuFirstText,
-            menuFirstTextXPosition,
-            menuFirstTextYPosition,
+            menuTextXPosition,
+            menuTextYPosition,
             menuTextSize,
             menuTextColor
         )
+    }
+
+    if(gameState == "action" && birdYAccelleration == 0) {
         drawText (
             menuSecondText,
-            menuSecondTextXPosition,
-            menuSecondTextYPosition,
+            menuTextXPosition,
+            menuTextYPosition,
             menuTextSize,
             menuTextColor
         )
@@ -221,8 +224,8 @@ function update() {
     if(gameState == "gameover") {
         drawText (
             gameOverText,
-            gameOverTextXPosition,
-            gameOverTextYPosition,
+            menuTextXPosition,
+            menuTextYPosition,
             menuTextSize,
             menuTextColor
         )

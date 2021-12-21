@@ -82,13 +82,9 @@ let coins = [];
 
 // menu text variables
 const menuFirstText = "Press " + startKey + " to start";
-const menuFirstTextXPosition = 300;
-const menuFirstTextYPosition = 400; 
+const menuTextXPosition = 300;
+const menuTextYPosition = 400; 
 const menuSecondText = "Press space to flap wings";
-const menuSecondTextXPosition = menuFirstTextXPosition;
-const menuSecondTextYPosition = menuFirstTextYPosition + 90; 
 const menuTextSize = 60;
 const menuTextColor = "yellow";
 const gameOverText = "Press " + restartKey + " to restart";
-const gameOverTextXPosition = menuFirstTextXPosition;
-const gameOverTextYPosition = menuFirstTextYPosition;
