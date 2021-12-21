@@ -14,7 +14,7 @@ document.addEventListener("keydown", function(event) {
     if (gameState == "action" && 
     event.key == bird.flapKey && 
     bird.canFlap == true) {
-        bird.flapwings();
+        bird.flap();
         bird.canFlap = false;
         bird.flapSound.currentTime = 0.1;
         bird.flapSound.play();
@@ -25,13 +25,11 @@ document.addEventListener("keydown", function(event) {
     // reset the game if the restart key is pressed
     if(gameState == "gameover" && event.key == restartKey) {
         gameState = "menu";
-        bird.yPosition = Bird.data.yPosition;
-        bird.ySpeed = 0;
-        bird.yAccelleration = Bird.data.yAccelleration;
-        bird.canFlap = false;
+        bird.destroy();
+        bird = new Bird();
         GameObject.destroyAllWithTag("fireball");
         GameObject.destroyAllWithTag("coin");
-        scoreboard.value = 0;
+        score.value = 0;
         gameOverText.isActive = false;
         startText.isActive = true;
 

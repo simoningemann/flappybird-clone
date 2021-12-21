@@ -1,79 +1,45 @@
 // execute the update function every 10 milliseconds
 function update() {
 
-    timeOfCurrentFrame = new Date().getTime();
-    if(timeOfLastFrame == undefined)
-        timeOfLastFrame = timeOfCurrentFrame -10;
-    deltaTime = timeOfCurrentFrame - timeOfLastFrame;
-    timeScale = deltaTime / timeBetweenUpdates;
-    timeOfLastFrame = timeOfCurrentFrame;
+    fillCanvas("rgb(179, 217, 255)");
 
-
-    Canvas.fillBackground("#b3d9ff");
     GameObject.drawAll();
     GameObject.updateAll();
 
-    // spawn a new cloud when if it is time
-    Cloud.timeSinceLastSpawn += deltaTime;
-    if(Cloud.timeSinceLastSpawn>Cloud.spawnInterval) {
-        new Cloud (
-            Cloud.data.drawOrder,
-            Cloud.data.image,
-            Cloud.data.xPosition,
-            Cloud.getRandomYPosition(),
-            Cloud.data.xSpeed
-        );
-        Cloud.timeSinceLastSpawn = 0;
-    }
+     // spawn a new cloud when if it is time
+     Cloud.timeSinceLastSpawn += timeSinceLastFrame;
+     if(Cloud.timeSinceLastSpawn>Cloud.spawnInterval) {
+         new Cloud ();
+         Cloud.timeSinceLastSpawn = 0;
+     }
 
     // spawn new fireballs if it is time
     if(gameState == "action" &&
     Fireball.timeSinceLastSpawn > Fireball.spawnInterval) {
-        new Fireball (
-            Fireball.data.drawOrder,
-            Fireball.data.tag,
-            Fireball.data.image,
-            Fireball.data.xPosition,
-            Fireball.getRandomYPosition(),
-            Fireball.data.hitboxRadius,
-            Fireball.data.xSpeed
-
-        );
+        new Fireball ();
         Fireball.timeSinceLastSpawn = 0;
     }
 
     if(gameState == "action") {
-        Fireball.timeSinceLastSpawn += deltaTime;
+        Fireball.timeSinceLastSpawn += timeSinceLastFrame;
     }
 
-     // spawn new coins
-     if(gameState == "action" &&
-     Coin.timeSinceLastSpawn>Coin.spawnInterval) {
-         new Coin (
-            Coin.data.drawOrder,
-            Coin.data.tag,
-            Coin.data.image,
-            Coin.data.sound,
-            Coin.data.xPosition,
-            Coin.getRandomYPosition(),
-            Coin.data.hitboxRadius,
-            Coin.data.xSpeed
-         );
-         Coin.timeSinceLastSpawn = 0;
-     }
- 
-     if(gameState == "action") {
-         Coin.timeSinceLastSpawn += deltaTime;
-     }
-
-}
-
-function waitForImageToLoad() {
-    if(Utility.numOfImagesLoaded == Utility.numOfImagesToLoad) {
-        scaleImages();
-        setInterval(update, timeBetweenUpdates);
+    
+    // spawn new coins
+    if(gameState == "action" &&
+    Coin.timeSinceLastSpawn > Coin.spawnInterval) {
+        new Coin ();
+        Coin.timeSinceLastSpawn = 0;
     }
-    else
-        setTimeout(waitForImageToLoad, 100);
+
+    if(gameState == "action") {
+        Coin.timeSinceLastSpawn += timeSinceLastFrame;
+    }
+
+    // update timeSinceLastFrame and draw next frame
+    timeOfCurrentFrame = new Date().getTime();
+    timeSinceLastFrame = timeOfCurrentFrame - timeOfLastFrame;
+    timeOfLastFrame = timeOfCurrentFrame;
+    window.requestAnimationFrame(update);
 }
-waitForImageToLoad();
+window.requestAnimationFrame(update);

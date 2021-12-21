@@ -1,38 +1,31 @@
 class Fireball extends GameObject {
 
-    static data = {
-        drawOrder: 10,
-        tag: "fireball",
-        image: Utility.loadImage("../assets/images/fireball.png"),
-        xPosition: Canvas.getWidth() + 200,
-        xSpeed: -3.5 * Canvas.getScale(),
-        hitboxRadius: 100 * Canvas.getScale()
-    }
-
-    constructor (drawOrder, tag, image, 
-        xPosition, yPosition, hitboxRadius, xSpeed) {
-        super(drawOrder, tag);
-        this.image = image;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
-        this.hitboxRadius = hitboxRadius;
-        this.xSpeed = xSpeed;
-    }
-
     static spawnInterval = 2000;
     static timeSinceLastSpawn = 2000;
 
+    constructor () {
+        let drawOrder = 9;
+        let tag = "fireball";
+        super(drawOrder, tag);
+        this.image = new Image(350, 350);
+        this.image.src = "../assets/images/fireball.png";
+        this.xPosition = spawnXPosition;
+        this.yPosition = randomBetween(0, canvas.height);
+        this.xSpeed = -5.5;
+        this.hitboxRadius = 100;
+    }
+
     draw() {
-        Canvas.drawImage(
+        drawImage(
             this.image,
-            this.xPosition - this.hitboxRadius * 2.3,
-            this.yPosition - this.hitboxRadius * 1.6,
-            this.image.width*1.3,
-            this.image.height*1.3
+            this.xPosition,
+            this.yPosition,
+            this.image.width,
+            this.image.height
         );
 
         if(debugModeIsOn) {
-            Canvas.drawCircle(
+            drawCircle(
                 this.xPosition, 
                 this.yPosition, 
                 this.hitboxRadius, 
@@ -42,14 +35,14 @@ class Fireball extends GameObject {
     }
 
     update() {
-        this.xPosition += this.xSpeed * timeScale;
+        this.xPosition += this.xSpeed;
 
         if(this.xPosition < destructionXPosition) {
             this.destroy();
         }
 
         if  (
-            Utility.theseCirclesCollide(
+            theseCirclesCollide(
             bird.xPosition, bird.yPosition, bird.hitboxRadius,
             this.xPosition, this.yPosition, this.hitboxRadius)
             && gameState == "action") 

@@ -1,34 +1,32 @@
 class GameObject {
 
-    static gameObjects = [];
+    static #gameObjects = [];
 
     constructor (drawOrder, tag) {
         // higher draworder is drawn in front
         this.drawOrder = drawOrder;
         this.tag = tag;
         this.isActive = true;
-        GameObject.gameObjects.push(this);
+        GameObject.#gameObjects.push(this);
         GameObject.sortAllByDrawOrder();
 
     }
 
     static drawAll() {
-        let objects = GameObject.gameObjects;
-        for (let object of GameObject.gameObjects) {
+        for (let object of GameObject.#gameObjects) {
             if (object.isActive)
                 object.draw();
         }
     }
 
     static updateAll() {
-        let objects = GameObject.gameObjects;
-        for (let i = 0; i < objects.length; i++) {
-            objects[i].update();
+        for (let object of GameObject.#gameObjects) {
+            object.update();
         }
     }
 
     static sortAllByDrawOrder () {
-        let result = GameObject.gameObjects;
+        let result = GameObject.#gameObjects;
 
         // i is the current index
         for(let i = 0; i < result.length; i++) {
@@ -46,7 +44,7 @@ class GameObject {
             result[i] = result[s]
             result[s] = t;
         }
-        GameObject.gameObjects = result;
+        GameObject.#gameObjects = result;
     }
 
     draw () {
@@ -57,20 +55,19 @@ class GameObject {
 
     destroy() {
         let newobjects = [];
-        for(let object of GameObject.gameObjects) {
+        for(let object of GameObject.#gameObjects) {
             if (object != this)
                 newobjects.push(object); 
         }
-        GameObject.gameObjects = newobjects;
+        GameObject.#gameObjects = newobjects;
     }
 
     static destroyAll () {
-        GameObject.gameObjects = [];
+        GameObject.#gameObjects = [];
     }
 
     static destroyAllWithTag(tag) {
-        GameObject.gameObjects = 
-        GameObject.gameObjects
+        GameObject.#gameObjects = GameObject.#gameObjects
         .filter(x => x.tag != tag);
     }
 }

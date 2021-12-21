@@ -1,7 +1,7 @@
 // execute the update function every 10 milliseconds
 function update() {
     
-    fillBackground("rgb(179, 217, 255)");
+    fillCanvas("rgb(179, 217, 255)");
 
     // for every cloud
     for(let cloud of clouds) {

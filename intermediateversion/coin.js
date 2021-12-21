@@ -1,39 +1,32 @@
 class Coin extends GameObject {
 
-    static data = {
-        drawOrder: 8,
-        tag: "coin",
-        image: Utility.loadImage("../assets/images/coin.png"),
-        sound: new Audio("../assets/sounds/coin.wav"),
-        xPosition: Canvas.getWidth() + 200,
-        hitboxRadius: 40 * Canvas.getScale(),
-        xSpeed: -3 * Canvas.getScale()
-    }
-
     static spawnInterval = 1000;
     static timeSinceLastSpawn = 1000;
 
-    constructor (drawOrder, tag, image, sound,
-        xPosition, yPosition, hitboxRadius, xSpeed) {
+    constructor () {
+        let drawOrder = 8;
+        let tag = "coin";
         super(drawOrder, tag);
-        this.image = image;
-        this.sound = sound;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition; 
-        this.hitboxRadius = hitboxRadius;
-        this.xSpeed = xSpeed;
+        this.sound = new Audio("../assets/sounds/coin.wav");
+        this.image = new Image(60, 60);
+        this.image.src = "../assets/images/coin.png";
+        this.xPosition = spawnXPosition;
+        this.yPosition = randomBetween(0, canvas.height);
+        this.hitboxRadius = 30;
+        this.xSpeed = -5;
+        this.value = 1;
     }
 
     draw() {
-        Canvas.drawImage(this.image,
-            this.xPosition - this.hitboxRadius * 1.3,
-            this.yPosition - this.hitboxRadius * 1.3,
-            this.hitboxRadius * 2.5,
-            this.hitboxRadius * 2.5
+        drawImage(this.image,
+            this.xPosition,
+            this.yPosition,
+            this.image.width,
+            this.image.height
         );
 
         if(debugModeIsOn) {
-            Canvas.drawCircle(
+            drawCircle(
                 this.xPosition, 
                 this.yPosition, 
                 this.hitboxRadius, 
@@ -43,25 +36,20 @@ class Coin extends GameObject {
     }
 
     update() {
-        this.xPosition += this.xSpeed * timeScale;
+        this.xPosition += this.xSpeed;
 
         if(this.xPosition < destructionXPosition)
         this.destroy();
 
         if  (
-            Utility.theseCirclesCollide(
+            theseCirclesCollide(
             bird.xPosition, bird.yPosition, bird.hitboxRadius,
             this.xPosition, this.yPosition, this.hitboxRadius)
             && gameState == "action") 
         {
             this.sound.play();
-            scoreboard.addPoints(1);
+            score.addPoints(this.value);
             this.destroy();
         }
     }
-
-    static getRandomYPosition () {
-        return Utility.randomBetween(0, Canvas.getHeight());
-    }
-
 }

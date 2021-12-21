@@ -18,7 +18,7 @@ class Bird extends GameObject {
     }
 
     draw() {
-        Canvas.drawImage(this.image,
+        drawImage(this.image,
             this.xPosition,
             this.yPosition,
             this.image.width,
@@ -26,7 +26,7 @@ class Bird extends GameObject {
         );
 
         if(debugModeIsOn) {
-            Canvas.drawCircle(
+            drawCircle(
                 this.xPosition, 
                 this.yPosition, 
                 this.hitboxRadius, 
@@ -38,11 +38,11 @@ class Bird extends GameObject {
     update () {
 
         if (gameState == "action" || gameState == "gameover") {
-            this.ySpeed += this.yAccelleration * timeScale;
-            this.yPosition += this.ySpeed * timeScale;
+            this.ySpeed += this.yAccelleration;
+            this.yPosition += this.ySpeed;
         }
 
-        if((Canvas.getHeight() < this.yPosition ||
+        if((canvas.height < this.yPosition ||
         this.yPosition < 0) && gameState == "action") {
             this.canFlap = false;
             gameOverSound.play();
@@ -52,7 +52,7 @@ class Bird extends GameObject {
         
     }
 
-    flapwings () {
-            this.ySpeed = this.flapForce;
+    flap () {
+        this.ySpeed = this.flapForce;
     }
 }
