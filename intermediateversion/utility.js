@@ -1,21 +1,19 @@
 class Utility {
 
-    static numOfImagesToLoad = 0;
-    static numOfImagesLoaded = 0;
-
     static loadImage (path) {
-        Utility.numOfImagesToLoad++;
         let image = new Image();
         image.src = path;
-        image.onload = () => Utility.numOfImagesLoaded++;
         return image;
     }
     
-    static theseCirclesCollide(c1x, c1y, c1r, c2x, c2y, c2r) {
-        let distance = this.calculateDistance(
-            c1x, c1y, c2x, c2y
+    static theseCirclesCollide(
+        circleOneX, circleOneY, circleOneRadius,
+        circleTwoX, circleTwoY, circleTwoRadius) {
+    
+        let distance = calculateDistance(
+            circleOneX, circleOneY, circleTwoX, circleTwoY
         );
-        if(distance < c1r + c2r)
+        if(distance < circleOneRadius + circleTwoRadius)
             return true;
         else
             return false;

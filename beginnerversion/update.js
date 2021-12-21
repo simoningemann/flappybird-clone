@@ -1,7 +1,7 @@
 // execute the update function every 10 milliseconds
 function update() {
     
-    fillBackground("#b3d9ff");
+    fillBackground("rgb(179, 217, 255)");
 
     // for every cloud
     for(let cloud of clouds) {
@@ -10,8 +10,8 @@ function update() {
             cloudImage,
             cloud.xPosition,
             cloud.yPosition,
-            cloudImageWidth,
-            cloudImageHeight
+            cloudImage.width,
+            cloudImage.height
         );
         // update the x position of the cloud
         cloud.xPosition += cloudXSpeed;
@@ -22,7 +22,7 @@ function update() {
 
     }
     // spawn a new cloud when the it is time
-    cloudTimeSinceLastSpawn += deltaTime;
+    cloudTimeSinceLastSpawn += timeSinceLastFrame;
     if(cloudTimeSinceLastSpawn>cloudSpawnInterval) {
         clouds.push({
             xPosition: spawnXPosition,
@@ -35,8 +35,8 @@ function update() {
     drawImage(birdImage,
         birdXPosition,
         birdYPosition,
-        birdImageWidth,
-        birdImageHeight
+        birdImage.width,
+        birdImage.height
     );
 
     // draw the bird hitbox if debugmode is on
@@ -68,8 +68,8 @@ function update() {
         drawImage(coinImage,
             coin.xPosition,
             coin.yPosition,
-            coinImageWidth,
-            coinImageHeight
+            coinImage.width,
+            coinImage.height
         );
 
         if(debugModeIsOn) {
@@ -119,7 +119,7 @@ function update() {
     }
 
     if(gameState == "action") {
-        coinTimeSinceLastSpawn += deltaTime;
+        coinTimeSinceLastSpawn += timeSinceLastFrame;
     }
 
 
@@ -130,8 +130,8 @@ function update() {
         drawImage(fireballImage,
             fireball.xPosition,
             fireball.yPosition,
-            fireballImageWidth,
-            fireballImageHeight
+            fireballImage.width,
+            fireballImage.height
         );
 
         if(debugModeIsOn) { // draw the hotbox
@@ -180,7 +180,7 @@ function update() {
     }
 
     if(gameState == "action") {
-        fireballTimeSinceLastSpawn += deltaTime;
+        fireballTimeSinceLastSpawn += timeSinceLastFrame;
     }
 
     //draw the scoreboard
@@ -188,8 +188,8 @@ function update() {
         scoreImage,
         scoreImageXPosition,
         scoreImageYPosition,
-        scoreImageWidth,
-        scoreImageHeight
+        scoreImage.width,
+        scoreImage.height
     );
     drawText(
         "x"+ scoreValue,
@@ -230,7 +230,7 @@ function update() {
 
     if(debugModeIsOn) {
         drawText(
-            "deltaTime: " + deltaTime,
+            "timeSinceLastFrame: " + timeSinceLastFrame,
             canvas.width/2,
             20,
             12,
@@ -238,9 +238,9 @@ function update() {
         );
     }
 
-    // update deltaTime and draw next frame
+    // update timeSinceLastFrame and draw next frame
     timeOfCurrentFrame = new Date().getTime();
-    deltaTime = timeOfCurrentFrame - timeOfLastFrame;
+    timeSinceLastFrame = timeOfCurrentFrame - timeOfLastFrame;
     timeOfLastFrame = timeOfCurrentFrame;
     window.requestAnimationFrame(update);
 }

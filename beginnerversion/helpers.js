@@ -11,14 +11,13 @@ canvas.height = 1080;
 // make variables for calculating delta time
 let timeOfLastFrame = new Date().getTime();
 let timeOfCurrentFrame = 0;
-let deltaTime = 10;
+let timeSinceLastFrame = 10;
 
 function loadImage (path) {
     let image = new Image();
     image.src = path;
     return image;
 }
-
     
 function theseCirclesCollide(
     circleOneX, circleOneY, circleOneRadius,

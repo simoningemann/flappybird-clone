@@ -1,8 +1,8 @@
  //game variables
 const gameOverSound = new Audio("../assets/sounds/gameover.mp3");
 const music = new Audio("../assets/sounds/music.mp3");
-    music.loop = true;
-    music.volume = 0.5;
+      music.loop = true;
+      music.volume = 0.5;
 const debugModeIsOn = true;
 const startKey = "s";
 const restartKey = "r";
@@ -12,9 +12,8 @@ const spawnXPosition = canvas.width * 1.2
 let gameState = "menu"; // menu, action or gameover
 
 // bird variables
-const birdImage = loadImage("../assets/images/bird.png");
-const birdImageWidth = 90;
-const birdImageHeight = 90;
+const birdImage = new Image(90, 90);
+      birdImage.src = "../assets/images/bird.png";
 const birdStartYPosition = 250;
 const birdStartYSpeed = 0;
 const birdStartYAccelleration = 0;
@@ -31,11 +30,10 @@ let birdCanFlap = false;
 
 
 // score variables
-const scoreImage = loadImage("../assets/images/coin.png");
+const scoreImage = new Image(60, 60);
+      scoreImage.src = "../assets/images/coin.png";
 const scoreImageXPosition = 70;
 const scoreImageYPosition = 70;
-const scoreImageWidth = 60;
-const scoreImageHeight = 60;
 const scoreTextXPosition = 100;
 const scoreTextYPosition = 90;
 const scoreTextSize = 50;
@@ -43,9 +41,8 @@ const scoreTextColor = "yellow";
 let scoreValue = 0;
 
 // cloud variables
-const cloudImage = loadImage("../assets/images/cloud.png");
-const cloudImageWidth = 200;
-const cloudImageHeight = 200;
+const cloudImage = new Image(200, 200);
+      cloudImage.src = "../assets/images/cloud.png";
 const cloudSpawnInterval = 10000; // milliseconds
 const cloudXSpeed = -.7;
 let cloudTimeSinceLastSpawn = 0; // milliseconds
@@ -65,21 +62,18 @@ let clouds = [
 ];
 
 // fireball variables
-const fireballImage = loadImage("../assets/images/fireball.png");
+const fireballImage = new Image(350, 350);
+      fireballImage.src = "../assets/images/fireball.png";
 const fireballXSpeed = -5.5;
 const fireballHitboxRadius = 100;
 const fireballSpawnInterval = 2000;
-const fireballImageWidth = 350;
-const fireballImageHeight = 350;
 let fireballTimeSinceLastSpawn = fireballSpawnInterval;
 let fireballs = [];
 
 // coin variables
 const coinSound = new Audio("../assets/sounds/coin.wav");
 const coinImage = scoreImage;
-const coinImageWidth = 62;
-const coinImageHeight = 62;
-const coinHitboxRadius = 31;
+const coinHitboxRadius = 30;
 const coinXSpeed = -5;
 const coinSpawnInterval = 1000;
 const coinValue = 1;

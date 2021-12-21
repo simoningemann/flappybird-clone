@@ -9,9 +9,7 @@ document.addEventListener("keydown", function(event) {
     }
 
     // flap the wings of the bird if the flapkey is pressed
-    if (gameState == "action" && 
-    event.key == birdFlapKey && 
-    birdCanFlap == true) {
+    if (gameState == "action" && event.key == birdFlapKey && birdCanFlap == true) {
         if(birdYAccelleration == 0) birdYAccelleration = birdBeginningYAccelleration;
         birdYSpeed = birdFlapForce;
         birdCanFlap = false;

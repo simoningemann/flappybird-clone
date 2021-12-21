@@ -10,10 +10,6 @@ const startKey = "s";
 const restartKey = "r";
 const hitboxColor = "#00FF02";
 const destructionXPosition = -1000;
-let timeOfLastFrame;
-let timeOfCurrentFrame;
-let deltaTime;
-let timeScale;
 
 //make the bird
 let bird = new Bird(

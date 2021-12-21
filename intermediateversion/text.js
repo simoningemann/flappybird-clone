@@ -1,7 +1,6 @@
 class TextObject extends GameObject {
 
-    constructor(drawOrder, text, xPosition, yPosition,
-        size, color) {
+    constructor(drawOrder, text, xPosition, yPosition, size, color) {
         super(drawOrder)
         this.text = text;
         this.xPosition = xPosition;

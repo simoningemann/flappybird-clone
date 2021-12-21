@@ -1,43 +1,28 @@
 class Bird extends GameObject {
 
-    // standard parameters for making a bird
-    static data = {
-        drawOrder: 5,
-        xPosition: 250 * Canvas.getScale(),
-        yPosition: 250 * Canvas.getScale(),
-        ySpeed: 0,
-        yAccelleration: 0.2 * Canvas.getScale(),
-        hitboxRadius: 40 * Canvas.getScale(),
-        image: Utility.loadImage("../assets/images/bird.png"),
-        flapSound: new Audio("../assets/sounds/flap.wav"),
-        flapForce: -5 * Canvas.getScale(),
-        flapKey: " ", //space
-        canFlap: false
-    }
-
     // constructor for a bird object
-    constructor (drawOrder, xPosition, yPosition,
-        ySpeed, yAccelleration,hitboxRadius,image,
-        flapSound, flapForce, flapKey, canFlap) {
+    constructor () {
+        let drawOrder = 5;
         super(drawOrder);
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
-        this.ySpeed = ySpeed;
-        this.yAccelleration = yAccelleration;
-        this.hitboxRadius = hitboxRadius;
-        this.image = image;
-        this.flapSound = flapSound;
-        this.flapForce = flapForce;
-        this.flapKey = flapKey;
-        this.canFlap = canFlap;
+        this.xPosition = 250;
+        this.yPosition = 250;
+        this.ySpeed = 0;
+        this.yAccelleration = 0.7;
+        this.hitboxRadius = 30;
+        this.image = new Image(90, 90);
+        this.image.src = "../assets/images/bird.png";
+        this.flapSound = new Audio("../assets/sounds/flap.wav");
+        this.flapForce = -12;
+        this.flapKey = " ";
+        this.canFlap = false;
     }
 
     draw() {
         Canvas.drawImage(this.image,
-            this.xPosition - this.hitboxRadius * 1.5,
-            this.yPosition - this.hitboxRadius * 1.5,
-            this.hitboxRadius * 3,
-            this.hitboxRadius * 3
+            this.xPosition,
+            this.yPosition,
+            this.image.width,
+            this.image.height
         );
 
         if(debugModeIsOn) {
