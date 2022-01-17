@@ -1,4 +1,4 @@
-// execute the update function every 10 milliseconds
+// execute the update function every frame
 function update() {
     
     fillCanvas("rgb(179, 217, 255)");
